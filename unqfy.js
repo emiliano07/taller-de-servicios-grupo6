@@ -2,14 +2,27 @@
 const picklify = require('picklify'); // para cargar/guarfar unqfy
 const fs = require('fs'); // para cargar/guarfar unqfy
 
+const Artist = require('./model');
+const Album = require('./model');
+
+
 
 class UNQfy {
+
+  constructor(){
+    this.idArtist = 0;
+    this.idAlbum = 0;
+    this.listOfArtists = [];
+  }
 
   // artistData: objeto JS con los datos necesarios para crear un artista
   //   artistData.name (string)
   //   artistData.country (string)
   // retorna: el nuevo artista creado
   addArtist(artistData) {
+    const newArtist = new Artist(artistData.name,artistData.country,this.idForArtist());
+    this.listOfArtists.push(newArtist);
+    return newArtist;
   /* Crea un artista y lo agrega a unqfy.
   El objeto artista creado debe soportar (al menos):
     - una propiedad name (string)
@@ -17,17 +30,34 @@ class UNQfy {
   */
   }
 
+  idForArtist() {
+    const id = this.idArtist;
+    this.idArtist++;
+    return id;
+  }
+
+  
 
   // albumData: objeto JS con los datos necesarios para crear un album
   //   albumData.name (string)
   //   albumData.year (number)
   // retorna: el nuevo album creado
   addAlbum(artistId, albumData) {
+    const artist = this.getArtistById(artistId);
+    const album = new Album(albumData.name,albumData.year,this.getIdForAlbum())
+    artist.addAlbum(album);
+    return album;
   /* Crea un album y lo agrega al artista con id artistId.
     El objeto album creado debe tener (al menos):
      - una propiedad name (string)
      - una propiedad year (number)
   */
+  }
+
+  getIdForAlbum() {
+    const id = this.idAlbum;
+    this.idAlbum++;
+    return id;
   }
 
 
@@ -46,7 +76,14 @@ class UNQfy {
   }
 
   getArtistById(id) {
+    return this.getArtistBy(a => a.id == id, id);
 
+  }
+
+  getArtistBy(filter, valueError) {
+    const artistSearched = this.listOfArtists.find(filter);
+      return artistSearched;
+    
   }
 
   getAlbumById(id) {
@@ -101,7 +138,7 @@ class UNQfy {
   static load(filename) {
     const serializedData = fs.readFileSync(filename, {encoding: 'utf-8'});
     //COMPLETAR POR EL ALUMNO: Agregar a la lista todas las clases que necesitan ser instanciadas
-    const classes = [UNQfy];
+    const classes = [UNQfy,Artist, Album];
     return picklify.unpicklify(JSON.parse(serializedData), classes);
   }
 }

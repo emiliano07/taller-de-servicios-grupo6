@@ -17,7 +17,7 @@
             "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
             "args": [
                 "--timeout",
-                "999999",
+                "9999",
                 "--colors",
                 "${workspaceFolder}/test"
             ],
