@@ -18,8 +18,21 @@ class Album {
     this.name = name;
     this.year = year;
     this.id = id;
+    this.tracks = [];
   }
 
+  addTrack(track) {
+    this.tracks.push(track);
+    return track;
+  }
 }
 
-module.exports = { Album, Artist };
+class Track {
+  constructor(name, duration, genres) {
+    this.name = name;
+    this.duration = duration;
+    this.genres = genres;
+  }
+}
+
+module.exports = { Album, Artist, Track };

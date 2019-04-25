@@ -4,6 +4,7 @@ const fs = require('fs'); // para cargar/guarfar unqfy
 
 const Artist = require('./model').Artist;
 const Album = require('./model').Album;
+const Track = require('./model').Track;
 
 
 
@@ -13,6 +14,7 @@ class UNQfy {
     this.idArtist = 0;
     this.idAlbum = 0;
     this.listOfArtists = [];
+    this.listOfAlbums = [];
   }
 
   // artistData: objeto JS con los datos necesarios para crear un artista
@@ -36,8 +38,6 @@ class UNQfy {
     return id;
   }
 
-  
-
   // albumData: objeto JS con los datos necesarios para crear un album
   //   albumData.name (string)
   //   albumData.year (number)
@@ -46,6 +46,7 @@ class UNQfy {
     const artist = this.getArtistById(artistId);
     const album = new Album(albumData.name,albumData.year,this.getIdForAlbum())
     artist.addAlbum(album);
+    this.listOfAlbums.push(album);
     return album;
   /* Crea un album y lo agrega al artista con id artistId.
     El objeto album creado debe tener (al menos):
@@ -67,27 +68,23 @@ class UNQfy {
   //   trackData.genres (lista de strings)
   // retorna: el nuevo track creado
   addTrack(albumId, trackData) {
-  /* Crea un track y lo agrega al album con id albumId.
-  El objeto track creado debe tener (al menos):
-      - una propiedad name (string),
-      - una propiedad duration (number),
-      - una propiedad genres (lista de strings)
-  */
+    const track = new Track(trackData.name, trackData.duration, trackData.genres);
+    const album = this.getAlbumById(albumId);
+
+    album.addTrack(track);
+    return track;
   }
 
   getArtistById(id) {
     return this.getArtistBy(a => a.id == id, id);
-
   }
 
   getArtistBy(filter, valueError) {
-    const artistSearched = this.listOfArtists.find(filter);
-      return artistSearched;
-    
+    return this.listOfArtists.find(filter);
   }
 
   getAlbumById(id) {
-
+    return this.listOfAlbums.find(album => album.id === id);
   }
 
   getTrackById(id) {
