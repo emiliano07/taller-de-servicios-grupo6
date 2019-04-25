@@ -2,8 +2,8 @@
 const picklify = require('picklify'); // para cargar/guarfar unqfy
 const fs = require('fs'); // para cargar/guarfar unqfy
 
-const Artist = require('./model');
-const Album = require('./model');
+const Artist = require('./model').Artist;
+const Album = require('./model').Album;
 
 
 
