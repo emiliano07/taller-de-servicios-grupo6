@@ -3,6 +3,8 @@
 const fs = require('fs'); // necesitado para guardar/cargar unqfy
 const unqmod = require('./unqfy'); // importamos el modulo unqfy
 
+const ArtistCommands = require('./src/commands/artist');
+
 // Retorna una instancia de UNQfy. Si existe filename, recupera la instancia desde el archivo.
 function getUNQfy(filename = 'data.json') {
   let unqfy = new unqmod.UNQfy();
@@ -47,47 +49,32 @@ function saveUNQfy(unqfy, filename = 'data.json') {
 */
 
 const Commands = {
-  addArtist: (args) => {
-    const unqfy = getUNQfy();
-    unqfy.addArtist({
-      name: args[0],
-      country: args[1],
-    });
-    saveUNQfy(unqfy);
-
-    console.log('Artist created.');
-  },
-
-  printArtist: (artistId) => {
-    const unqfy = getUNQfy();
-    const artist = unqfy.getArtistById(Number(artistId));
-
-    if (artist === undefined) {
-      console.log(`Artist ${artistId} not found.`);
-    } else {
-      console.log(artist);
-    }
-  }
+  artist: (...args) => run(ArtistCommands, ...args)
 };
+
+function run(commands, unqfy, params) {
+  const commandName = params[0];
+  const commandArgs = params.slice(1);
+
+  if (commandName === undefined) {
+    //Imprime todos los comandos
+    Object.keys(commands).map((c) => console.log(c));
+    return;
+  }
+
+  if (!(commandName in commands)) {
+    console.log(`Command ${commandName} not found.`);
+    return;
+  }
+
+  return commands[commandName](unqfy, commandArgs);
+}
 
 function main() {
   console.log('--- UNQfy ---');
   const params = process.argv.slice(2);
-  const commandName = params[0];
 
-  if (commandName === undefined) {
-    //Imprime todos los comandos
-    Object.keys(Commands).map((c) => console.log(c));
-    return;
-  }
-
-  const commandArgs = params.slice(1);
-
-  try {
-    Commands[commandName](commandArgs);
-  } catch (error) {
-    console.log(`Command ${commandName} not found.`);
-  }
+  run(Commands, getUNQfy(), params);
 }
 
 main();

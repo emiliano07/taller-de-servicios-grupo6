@@ -122,7 +122,7 @@ class UNQfy {
 
   }
 
-  save(filename) {
+  save(filename = 'data.json') {
     const listenersBkp = this.listeners;
     this.listeners = [];
 
