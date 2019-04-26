@@ -12,12 +12,17 @@
 
 ## Comandos
 
-### addArtist
+### artist add
 `
-nodejs main.js addArtist "Artista" "Pais"
+nodejs main.js artist add "Artista" "Pais"
 `
 
-### printArtist
+### artist list
 `
-nodejs main.js printArtist 1
+nodejs main.js artist list
+`
+
+### artist print
+`
+nodejs main.js artist print 1
 `
