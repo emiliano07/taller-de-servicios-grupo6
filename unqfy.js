@@ -106,6 +106,16 @@ class UNQfy {
 
   }
 
+  searchByName(name) {
+    const search = obj => obj.name.indexOf(name) !== -1;
+
+    return {
+      artists: this.listOfArtists.filter(search),
+      albums: this.listOfAlbums.filter(search),
+      tracks: this.listOfTracks.filter(search)
+    };
+  }
+
   // genres: array de generos(strings)
   // retorna: los tracks que contenga alguno de los generos en el parametro genres
   getTracksMatchingGenres(genres) {
