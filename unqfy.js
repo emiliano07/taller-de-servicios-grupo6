@@ -7,14 +7,33 @@ const Album = require('./model').Album;
 const Track = require('./model').Track;
 
 
-
 class UNQfy {
 
   constructor(){
     this.idArtist = 0;
     this.idAlbum = 0;
+    this.idTrack = 0;
     this.listOfArtists = [];
     this.listOfAlbums = [];
+    this.listOfTracks = [];
+  }
+
+  getIdForArtist() {
+    const id = this.idArtist;
+    this.idArtist++;
+    return id;
+  }
+
+  getIdForAlbum() {
+    const id = this.idAlbum;
+    this.idAlbum++;
+    return id;
+  }
+
+  getIdForTrack() {
+    const id = this.idTrack;
+    this.idTrack++;
+    return id;
   }
 
   // artistData: objeto JS con los datos necesarios para crear un artista
@@ -22,7 +41,7 @@ class UNQfy {
   //   artistData.country (string)
   // retorna: el nuevo artista creado
   addArtist(artistData) {
-    const newArtist = new Artist(artistData.name,artistData.country,this.idForArtist());
+    const newArtist = new Artist(artistData.name,artistData.country,this.getIdForArtist());
     this.listOfArtists.push(newArtist);
     return newArtist;
   /* Crea un artista y lo agrega a unqfy.
@@ -30,12 +49,6 @@ class UNQfy {
     - una propiedad name (string)
     - una propiedad country (string)
   */
-  }
-
-  idForArtist() {
-    const id = this.idArtist;
-    this.idArtist++;
-    return id;
   }
 
   // albumData: objeto JS con los datos necesarios para crear un album
@@ -55,22 +68,16 @@ class UNQfy {
     return album;
   }
 
-  getIdForAlbum() {
-    const id = this.idAlbum;
-    this.idAlbum++;
-    return id;
-  }
-
-
   // trackData: objeto JS con los datos necesarios para crear un track
   //   trackData.name (string)
   //   trackData.duration (number)
   //   trackData.genres (lista de strings)
   // retorna: el nuevo track creado
   addTrack(albumId, trackData) {
-    const track = new Track(trackData.name, trackData.duration, trackData.genres);
+    const track = new Track(trackData.name, trackData.duration, trackData.genres, this.getIdForTrack());
     const album = this.getAlbumById(albumId);
 
+    this.listOfTracks.push(track);
     album.addTrack(track);
     return track;
   }
@@ -84,7 +91,11 @@ class UNQfy {
   }
 
   getAlbumById(id) {
-    return this.listOfAlbums.find(album => album.id === id);
+    return this.getAlbumBy(album => album.id === id);
+  }
+
+  getAlbumBy(filter) {
+    return this.listOfAlbums.find(filter);
   }
 
   getTrackById(id) {

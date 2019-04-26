@@ -1,10 +1,10 @@
 
 class Artist {
   constructor(name, country, id) {
+    this.id = id;
     this.name = name;
     this.country = country;
     this.albums = [];
-    this.id = id;
   }
 
   addAlbum(album) {
@@ -15,9 +15,9 @@ class Artist {
 
 class Album {
   constructor(name, year, id) {
+    this.id = id;
     this.name = name;
     this.year = year;
-    this.id = id;
     this.tracks = [];
   }
 
@@ -28,7 +28,8 @@ class Album {
 }
 
 class Track {
-  constructor(name, duration, genres) {
+  constructor(name, duration, genres, id) {
+    this.id = id;
     this.name = name;
     this.duration = duration;
     this.genres = genres;
