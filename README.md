@@ -41,3 +41,8 @@ nodejs main.js album list
 `
 nodejs main.js album print 1
 `
+
+### search allByName
+`
+nodejs main.js search allByName "nombre"
+`
