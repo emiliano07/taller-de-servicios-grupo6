@@ -26,3 +26,18 @@ nodejs main.js artist list
 `
 nodejs main.js artist print 1
 `
+
+### album add
+`
+nodejs main.js album add "AlbumNombre" 2015 artistId
+`
+
+### album list
+`
+nodejs main.js album list
+`
+
+### album print
+`
+nodejs main.js album print 1
+`
