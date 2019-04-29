@@ -5,6 +5,7 @@ const unqmod = require('./unqfy'); // importamos el modulo unqfy
 
 const ArtistCommands = require('./src/commands/artist');
 const AlbumCommands = require('./src/commands/album');
+const TrackCommands = require('./src/commands/track');
 const SearchCommands = require('./src/commands/search');
 
 // Retorna una instancia de UNQfy. Si existe filename, recupera la instancia desde el archivo.
@@ -53,6 +54,7 @@ function saveUNQfy(unqfy, filename = 'data.json') {
 const Commands = {
   artist: (...args) => run(ArtistCommands, ...args),
   album: (...args) => run(AlbumCommands, ...args),
+  track: (...args) => run(TrackCommands, ...args),
   search: (...args) => run(SearchCommands, ...args)
 };
 

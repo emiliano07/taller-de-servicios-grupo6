@@ -4,7 +4,7 @@ const AlbumCommands = {
     const year = args[1];
     const artistId = args[2];
 
-    unqfy.addAlbum(artistId, {
+    unqfy.addAlbum(Number(artistId), {
       name: name,
       year: year,
     });
@@ -19,11 +19,7 @@ const AlbumCommands = {
   print: (unqfy, albumId) => {
     const album = unqfy.getAlbumById(Number(albumId));
 
-    if (album === undefined) {
-      console.log(`Album ${albumId} not found.`);
-    } else {
-      console.log(album);
-    }
+    console.log(album);
   }
 };
 

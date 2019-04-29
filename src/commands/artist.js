@@ -15,11 +15,7 @@ const ArtistCommands = {
   print: (unqfy, artistId) => {
     const artist = unqfy.getArtistById(Number(artistId));
 
-    if (artist === undefined) {
-      console.log(`Artist ${artistId} not found.`);
-    } else {
-      console.log(artist);
-    }
+    console.log(artist);
   }
 };
 

@@ -136,7 +136,11 @@ class UNQfy {
   }
 
   getTrackById(id) {
-
+    const track = this.listOfTracks.find(track => track.id === id);
+    if (!track){
+      throw new modelExep.NotFoundException('Track no encontrado');
+    }
+    return track;
   }
 
   getPlaylistById(id) {

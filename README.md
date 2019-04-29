@@ -42,6 +42,21 @@ nodejs main.js album list
 nodejs main.js album print 1
 `
 
+### track add
+`
+nodejs main.js track add albumId "Nombre de la cancion" 120 rock pop
+`
+
+### track list
+`
+nodejs main.js track list
+`
+
+### track print
+`
+nodejs main.js track print 1
+`
+
 ### search allByName
 `
 nodejs main.js search allByName "nombre"
