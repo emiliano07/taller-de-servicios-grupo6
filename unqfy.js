@@ -32,7 +32,7 @@ class UNQfy {
     const newArtist = new Artist(artistData.name,artistData.country,this.getIdForArtist());
     this.listOfArtists.push(newArtist);
     return newArtist;
-   
+
   /* Crea un artista y lo agrega a unqfy.
   El objeto artista creado debe soportar (al menos):
     - una propiedad name (string)
@@ -46,7 +46,7 @@ class UNQfy {
   // retorna: el nuevo album creado
   addAlbum(artistId, albumData) {
     if ( this.getAlbums().find( album => album.name === albumData.name && album.year === albumData.year ) ){
-      throw new modelExep.DuplicatedException( "album duplicado" )  
+      throw new modelExep.DuplicatedException( "album duplicado" )
     }
     const artist = this.getArtistById(artistId);
     const album = new Album(albumData.name,albumData.year,this.getIdForAlbum());
@@ -81,7 +81,7 @@ class UNQfy {
         * un metodo hasTrack(aTrack) que retorna true si aTrack se encuentra en la playlist.
     */
           let aPlayList = new PlayList(name,genresToInclude,maxDuration);
-          let tracks = [] 
+          let tracks = []
           this.getTracks().filter( track => track.genres.some( genre => genresToInclude.includes(genre))).
           forEach(track => {
                             if ( track.duration <= maxDuration ){
@@ -100,7 +100,8 @@ class UNQfy {
     return {
       artists: this.listOfArtists.filter(search),
       albums: this.listOfAlbums.filter(search),
-      tracks: this.listOfTracks.filter(search)
+      tracks: this.listOfTracks.filter(search),
+      playlists: this.playLists.filter(search)
     };
   }
 
@@ -127,7 +128,7 @@ class UNQfy {
     return this.listOfArtists.map( artista => artista.getAlbums() )
                           .reduce( (a,b) => a.concat(b), [] );
   }
-  
+
   getAlbumById(id) {
     let albumFound = this.getAlbums().find( album => album.id == id )
     if (!albumFound){ throw new modelExep.NotFoundException('Album no encontrado')}
