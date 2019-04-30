@@ -15,6 +15,7 @@ class UNQfy {
     this.idArtist = 0;
     this.idAlbum = 0;
     this.idTrack = 0;
+    this.idPlaylist = 0;
     this.listOfArtists = [];
     this.listOfAlbums = [];
     this.listOfTracks = [];
@@ -80,7 +81,7 @@ class UNQfy {
         * un metodo duration() que retorne la duración de la playlist.
         * un metodo hasTrack(aTrack) que retorna true si aTrack se encuentra en la playlist.
     */
-          let aPlayList = new PlayList(name,genresToInclude,maxDuration);
+          let aPlayList = new PlayList(this.getIdForPlaylist(),name,genresToInclude,maxDuration);
           let tracks = []
           this.getTracks().filter( track => track.genres.some( genre => genresToInclude.includes(genre))).
           forEach(track => {
@@ -123,6 +124,12 @@ class UNQfy {
     return id;
   }
 
+  getIdForPlaylist() {
+    const id = this.idPlaylist;
+    this.idPlaylist++;
+    return id;
+  }
+
   getAlbums(){
     let a = [];
     return this.listOfArtists.map( artista => artista.getAlbums() )
@@ -144,7 +151,11 @@ class UNQfy {
   }
 
   getPlaylistById(id) {
-
+    const playlist = this.playLists.find(pl => pl.id === id);
+    if (!playlist) {
+      throw new modelExep.NotFoundException('Playlist no encontrado');
+    }
+    return playlist;
   }
 
   getArtistById(id) {
