@@ -73,6 +73,19 @@ nodejs main.js playlist print 1
 `
 
 ### search allByName
+Busca e imprimir en pantalla tracks, álbumes o artistas por matching parcial contra el nombre de los objetos.
 `
 nodejs main.js search allByName "nombre"
+`
+
+### search tracksByArtist
+Busca e imprime todos los tracks de un determinado artista.
+`
+nodejs main.js search tracksByArtist artistId
+`
+
+### search tracksByGenres
+Buscar e imprime todos los tracks que poseen un género particular.
+`
+nodejs main.js search tracksByGenres rock pop
 `
