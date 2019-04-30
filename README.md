@@ -17,6 +17,11 @@
 nodejs main.js artist add "Artista" "Pais"
 `
 
+### artist delete
+`
+nodejs main.js artist delete 1
+`
+
 ### artist list
 `
 nodejs main.js artist list
@@ -30,6 +35,11 @@ nodejs main.js artist print 1
 ### album add
 `
 nodejs main.js album add "AlbumNombre" 2015 artistId
+`
+
+### album delete
+`
+nodejs main.js album delete 1
 `
 
 ### album list
@@ -47,6 +57,11 @@ nodejs main.js album print 1
 nodejs main.js track add albumId "Nombre de la cancion" 120 rock pop
 `
 
+### track delete
+`
+nodejs main.js track delete 1
+`
+
 ### track list
 `
 nodejs main.js track list
@@ -60,6 +75,11 @@ nodejs main.js track print 1
 ### playlist create
 `
 nodejs main.js playlist create "Nombre de playlist" 500 rock pop
+`
+
+### playlist delete
+`
+nodejs main.js playlist delete 1
 `
 
 ### playlist list
