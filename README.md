@@ -57,6 +57,21 @@ nodejs main.js track list
 nodejs main.js track print 1
 `
 
+### playlist create
+`
+nodejs main.js playlist create "Nombre de playlist" 500 rock pop
+`
+
+### playlist list
+`
+nodejs main.js playlist list
+`
+
+### playlist print
+`
+nodejs main.js playlist print 1
+`
+
 ### search allByName
 `
 nodejs main.js search allByName "nombre"
