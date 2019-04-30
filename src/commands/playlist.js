@@ -11,6 +11,13 @@ const PlaylistCommands = {
     console.log('Playlist created.');
   },
 
+  delete: (unqfy, playlistId) => {
+    unqfy.deletePlaylist(Number(playlistId));
+    unqfy.save();
+
+    console.log('Playlist eliminada.');
+  },
+
   list: (unqfy) => unqfy.playLists.map(pl => console.log(pl)),
 
   print: (unqfy, id) => {

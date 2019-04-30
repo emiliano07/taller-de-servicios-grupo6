@@ -11,7 +11,7 @@ const modelExep = require('./src/model/ModelException');
 
 class UNQfy {
 
-  constructor(){
+  constructor() {
     this.idArtist = 0;
     this.idAlbum = 0;
     this.idTrack = 0;
@@ -27,18 +27,18 @@ class UNQfy {
   //   artistData.country (string)
   // retorna: el nuevo artista creado
   addArtist(artistData) {
-    if ( this.listOfArtists.find( artist => artist.name === artistData.name && artist.country === artistData.country ) ){
+    if (this.listOfArtists.find(artist => artist.name === artistData.name && artist.country === artistData.country)) {
       throw new modelExep.DuplicatedException('Artista duplicado');
     }
-    const newArtist = new Artist(artistData.name,artistData.country,this.getIdForArtist());
+    const newArtist = new Artist(artistData.name, artistData.country, this.getIdForArtist());
     this.listOfArtists.push(newArtist);
     return newArtist;
 
-  /* Crea un artista y lo agrega a unqfy.
-  El objeto artista creado debe soportar (al menos):
-    - una propiedad name (string)
-    - una propiedad country (string)
-  */
+    /* Crea un artista y lo agrega a unqfy.
+    El objeto artista creado debe soportar (al menos):
+      - una propiedad name (string)
+      - una propiedad country (string)
+    */
   }
 
   // albumData: objeto JS con los datos necesarios para crear un album
@@ -46,12 +46,13 @@ class UNQfy {
   //   albumData.year (number)
   // retorna: el nuevo album creado
   addAlbum(artistId, albumData) {
-    if ( this.getAlbums().find( album => album.name === albumData.name && album.year === albumData.year ) ){
-      throw new modelExep.DuplicatedException( "album duplicado" )
+    if (this.getAlbums().find(album => album.name === albumData.name && album.year === albumData.year)) {
+      throw new modelExep.DuplicatedException("album duplicado")
     }
     const artist = this.getArtistById(artistId);
-    const album = new Album(albumData.name,albumData.year,this.getIdForAlbum());
+    const album = new Album(albumData.name, albumData.year, this.getIdForAlbum());
     artist.addAlbum(album);
+    album.setArtist(artist);
     this.listOfAlbums.push(album);
     return album;
   }
@@ -67,6 +68,7 @@ class UNQfy {
 
     this.listOfTracks.push(track);
     album.addTrack(track);
+    track.setAlbum(album);
     return track;
   }
 
@@ -81,18 +83,18 @@ class UNQfy {
         * un metodo duration() que retorne la duración de la playlist.
         * un metodo hasTrack(aTrack) que retorna true si aTrack se encuentra en la playlist.
     */
-          let aPlayList = new PlayList(this.getIdForPlaylist(),name,genresToInclude,maxDuration);
-          let tracks = []
-          this.getTracks().filter( track => track.genres.some( genre => genresToInclude.includes(genre))).
-          forEach(track => {
-                            if ( track.duration <= maxDuration ){
-                            maxDuration = maxDuration - track.duration;
-                            tracks.push( track )
-                           }
-                   });
-            aPlayList.tracks = tracks;
-            this.playLists.push( aPlayList );
-            return aPlayList;
+    let aPlayList = new PlayList(this.getIdForPlaylist(), name, genresToInclude, maxDuration);
+    let tracks = []
+    this.getTracks().filter(track => track.genres.some(genre => genresToInclude.includes(genre))).
+      forEach(track => {
+        if (track.duration <= maxDuration) {
+          maxDuration = maxDuration - track.duration;
+          tracks.push(track)
+        }
+      });
+    aPlayList.tracks = tracks;
+    this.playLists.push(aPlayList);
+    return aPlayList;
   }
 
   searchByName(name) {
@@ -130,21 +132,21 @@ class UNQfy {
     return id;
   }
 
-  getAlbums(){
+  getAlbums() {
     let a = [];
-    return this.listOfArtists.map( artista => artista.getAlbums() )
-                          .reduce( (a,b) => a.concat(b), [] );
+    return this.listOfArtists.map(artista => artista.getAlbums())
+      .reduce((a, b) => a.concat(b), []);
   }
 
   getAlbumById(id) {
-    let albumFound = this.getAlbums().find( album => album.id == id )
-    if (!albumFound){ throw new modelExep.NotFoundException('Album no encontrado')}
+    let albumFound = this.getAlbums().find(album => album.id == id)
+    if (!albumFound) { throw new modelExep.NotFoundException('Album no encontrado') }
     return albumFound
   }
 
   getTrackById(id) {
     const track = this.listOfTracks.find(track => track.id === id);
-    if (!track){
+    if (!track) {
       throw new modelExep.NotFoundException('Track no encontrado');
     }
     return track;
@@ -159,33 +161,58 @@ class UNQfy {
   }
 
   getArtistById(id) {
-    let artistFound = this.listOfArtists.find( artist => artist.id === id );
-    if ( !artistFound ){ throw new modelExep.NotFoundException('Artista no encontrado') }
+    let artistFound = this.listOfArtists.find(artist => artist.id === id);
+    if (!artistFound) { throw new modelExep.NotFoundException('Artista no encontrado') }
     return artistFound;
   }
 
   getArtistByName(name) {
-    let artistFound = this.listOfArtists.find( artist => artist.name === name );
-    if ( !artistFound ){ throw new modelExep.NotFoundException('Artista no encontrado') }
+    let artistFound = this.listOfArtists.find(artist => artist.name === name);
+    if (!artistFound) { throw new modelExep.NotFoundException('Artista no encontrado') }
     return artistFound;
   }
 
-  getTracks(){
+  getTracks() {
     let a = [];
-    return this.getAlbums().map( album => album.tracks )
-                            .reduce( (a,b) => a.concat(b), [] );
+    return this.getAlbums().map(album => album.tracks)
+      .reduce((a, b) => a.concat(b), []);
   }
 
   // genres: array de generos(strings)
   // retorna: los tracks que contenga alguno de los generos en el parametro genres
   getTracksMatchingGenres(genres) {
-    return this.getTracks().filter( track => track.includesGenres(genres) );
+    return this.getTracks().filter(track => track.includesGenres(genres));
   }
 
   // artistaId: id de artista
   // retorna: los tracks interpredatos por el artista con id artistaId
   getTracksMatchingArtist(artistaId) {
     return this.getArtistById(artistaId).getTracks();
+  }
+
+  deleteArtist(artistId) {
+    const artist = this.getArtistById(artistId);
+    artist.getAlbums().map(a => this.deleteAlbum(a.id));
+    this.listOfArtists = this.listOfArtists.filter(a => a.id !== artistId);
+  }
+
+  deleteAlbum(albumId) {
+    const album = this.getAlbumById(albumId);
+    album.artist.removeAlbum(albumId);
+    album.getTracks().map(t => this.deleteTrack(t.id));
+    this.listOfAlbums = this.listOfAlbums.filter(a => a.id !== albumId);
+  }
+
+  deleteTrack(trackId) {
+    const track = this.getTrackById(trackId);
+    track.album.removeTrack(trackId);
+    this.listOfTracks = this.listOfTracks.filter(t => t !== track);
+    this.playLists.map(pl => pl.removeTrack(trackId));
+  }
+
+  deletePlaylist(playlistId) {
+    const playlist = this.getPlaylistById(playlistId);
+    this.playLists = this.playLists.filter(p => p !== playlist);
   }
 
   save(filename = 'data.json') {
@@ -199,9 +226,9 @@ class UNQfy {
   }
 
   static load(filename) {
-    const serializedData = fs.readFileSync(filename, {encoding: 'utf-8'});
+    const serializedData = fs.readFileSync(filename, { encoding: 'utf-8' });
     //COMPLETAR POR EL ALUMNO: Agregar a la lista todas las clases que necesitan ser instanciadas
-    const classes = [UNQfy,Artist, Album, Track, PlayList];
+    const classes = [UNQfy, Artist, Album, Track, PlayList];
     return picklify.unpicklify(JSON.parse(serializedData), classes);
   }
 }
