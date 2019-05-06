@@ -7,15 +7,13 @@ const Album = require('./src/model/Album').Album;
 const Track = require('./src/model/Track').Track;
 const PlayList = require('./src/model/PlayList').PlayList;
 const modelExep = require('./src/model/ModelException');
+const IdGenerator = require('./src/model/IdGenerator').IdGenerator;
 
 
 class UNQfy {
 
   constructor() {
-    this.idArtist = 0;
-    this.idAlbum = 0;
-    this.idTrack = 0;
-    this.idPlaylist = 0;
+    this.idGenerator = new IdGenerator();
     this.listOfArtists = [];
     this.listOfAlbums = [];
     this.listOfTracks = [];
@@ -30,7 +28,7 @@ class UNQfy {
     if (this.listOfArtists.find(artist => artist.name === artistData.name && artist.country === artistData.country)) {
       throw new modelExep.DuplicatedException('Artista duplicado');
     }
-    const newArtist = new Artist(artistData.name, artistData.country, this.getIdForArtist());
+    const newArtist = new Artist(artistData.name, artistData.country, this.idGenerator.getIdForArtist());
     this.listOfArtists.push(newArtist);
     return newArtist;
 
@@ -50,7 +48,7 @@ class UNQfy {
       throw new modelExep.DuplicatedException("album duplicado")
     }
     const artist = this.getArtistById(artistId);
-    const album = new Album(albumData.name, albumData.year, this.getIdForAlbum());
+    const album = new Album(albumData.name, albumData.year, this.idGenerator.getIdForAlbum());
     artist.addAlbum(album);
     album.setArtist(artist);
     this.listOfAlbums.push(album);
@@ -63,7 +61,7 @@ class UNQfy {
   //   trackData.genres (lista de strings)
   // retorna: el nuevo track creado
   addTrack(albumId, trackData) {
-    const track = new Track(trackData.name, trackData.duration, trackData.genres, this.getIdForTrack());
+    const track = new Track(trackData.name, trackData.duration, trackData.genres, this.idGenerator.getIdForTrack());
     const album = this.getAlbumById(albumId);
 
     this.listOfTracks.push(track);
@@ -83,7 +81,7 @@ class UNQfy {
         * un metodo duration() que retorne la duración de la playlist.
         * un metodo hasTrack(aTrack) que retorna true si aTrack se encuentra en la playlist.
     */
-    let aPlayList = new PlayList(this.getIdForPlaylist(), name, genresToInclude, maxDuration);
+    let aPlayList = new PlayList(this.idGenerator.getIdForPlaylist(), name, genresToInclude, maxDuration);
     let tracks = []
     this.getTracks().filter(track => track.genres.some(genre => genresToInclude.includes(genre))).
       forEach(track => {
@@ -106,30 +104,6 @@ class UNQfy {
       tracks: this.listOfTracks.filter(search),
       playlists: this.playLists.filter(search)
     };
-  }
-
-  getIdForArtist() {
-    const id = this.idArtist;
-    this.idArtist++;
-    return id;
-  }
-
-  getIdForAlbum() {
-    const id = this.idAlbum;
-    this.idAlbum++;
-    return id;
-  }
-
-  getIdForTrack() {
-    const id = this.idTrack;
-    this.idTrack++;
-    return id;
-  }
-
-  getIdForPlaylist() {
-    const id = this.idPlaylist;
-    this.idPlaylist++;
-    return id;
   }
 
   getAlbums() {
@@ -228,7 +202,7 @@ class UNQfy {
   static load(filename) {
     const serializedData = fs.readFileSync(filename, { encoding: 'utf-8' });
     //COMPLETAR POR EL ALUMNO: Agregar a la lista todas las clases que necesitan ser instanciadas
-    const classes = [UNQfy, Artist, Album, Track, PlayList];
+    const classes = [UNQfy, Artist, Album, Track, PlayList, IdGenerator];
     return picklify.unpicklify(JSON.parse(serializedData), classes);
   }
 }
