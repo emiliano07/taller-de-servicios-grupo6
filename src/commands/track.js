@@ -16,6 +16,13 @@ const TrackCommands = {
     console.log('Track created.');
   },
 
+  delete: (unqfy, trackId) => {
+    unqfy.deleteTrack(Number(trackId));
+    unqfy.save();
+
+    console.log('Track eliminado.');
+  },
+
   list: (unqfy) => unqfy.listOfTracks.map(track => console.log(track)),
 
   print: (unqfy, trackId) => {

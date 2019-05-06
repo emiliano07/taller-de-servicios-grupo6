@@ -1,22 +1,27 @@
-class PlayList{
-    constructor( name, genresToInclude, maxDuration ){
-        this.name = name;
-        this.genresToInclude = genresToInclude;
-        this.maxDuration = maxDuration;
-        this.tracks = [];
-    }
-  
-    duration(){
-        let a = 0; 
-        return this.tracks.map( track => track.duration ).
-                            reduce( function(a,b){ return a = a+b } );
-    }
-  
-    hasTrack(aTrack){
-        return this.tracks.includes(aTrack);
-    }
+class PlayList {
+  constructor(id, name, genresToInclude, maxDuration) {
+    this.id = id;
+    this.name = name;
+    this.genresToInclude = genresToInclude;
+    this.maxDuration = maxDuration;
+    this.tracks = [];
+  }
+
+  duration() {
+    let a = 0;
+    return this.tracks.map(track => track.duration).
+      reduce(function (a, b) { return a = a + b });
+  }
+
+  hasTrack(aTrack) {
+    return this.tracks.includes(aTrack);
+  }
+
+  removeTrack(trackId) {
+    this.tracks = this.tracks.filter(t => t.id !== trackId);
+  }
 }
 
 module.exports = {
-    PlayList,
-  };
+  PlayList,
+};

@@ -10,6 +10,13 @@ const ArtistCommands = {
     console.log('Artist created.');
   },
 
+  delete: (unqfy, artistId) => {
+    unqfy.deleteArtist(Number(artistId));
+    unqfy.save();
+
+    console.log('Artista eliminado.');
+  },
+
   list: (unqfy) => unqfy.listOfArtists.map(artist => console.log(artist)),
 
   print: (unqfy, artistId) => {

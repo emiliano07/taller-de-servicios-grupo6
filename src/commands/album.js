@@ -14,6 +14,13 @@ const AlbumCommands = {
     console.log('Album created.');
   },
 
+  delete: (unqfy, albumId) => {
+    unqfy.deleteAlbum(Number(albumId));
+    unqfy.save();
+
+    console.log('Album eliminado.');
+  },
+
   list: (unqfy) => unqfy.listOfAlbums.map(album => console.log(album)),
 
   print: (unqfy, albumId) => {
