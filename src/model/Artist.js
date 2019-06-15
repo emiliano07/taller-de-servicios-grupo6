@@ -24,6 +24,16 @@ class Artist {
     return this.albums.map(album => album.getTracks()).
       reduce(function (a, b) { return a.concat(b) }, []);
   }
+  
+  toJSON(){
+    let data = {
+        id : this.id,
+        name : this.name,
+        country : this.country,
+        albums : this.albums
+    };
+    return data;
+  }
 }
 
 module.exports = {

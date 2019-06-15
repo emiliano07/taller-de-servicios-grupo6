@@ -22,6 +22,17 @@ class Album {
   setArtist(artist) {
     this.artist = artist;
   }
+
+  toJSON(){
+    let data = {
+        id : this.id,
+        name : this.name,
+        year : this.year,
+        tracks : this.tracks,
+    };
+    return data;
+  }
+  
 }
 
 module.exports = {

@@ -164,6 +164,10 @@ class UNQfy {
     return this.getArtistById(artistaId).getTracks();
   }
 
+  getListOfArtist() {
+    return this.listOfArtists;
+  }
+
   deleteArtist(artistId) {
     const artist = this.getArtistById(artistId);
     artist.getAlbums().map(a => this.deleteAlbum(a.id));
