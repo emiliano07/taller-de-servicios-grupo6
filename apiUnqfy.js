@@ -93,6 +93,17 @@ router.route('/artists/:artistId').put(function(req, res){
     console.log(artist);
 })
 
+router.route('/artistByName').get(function(req, res){
+    let unqfy = loadUnqfy();
+    let albums;
+    let name = req.query.name;
+    artists = unqfy.getArtistByName(name);
+    res.status(200);
+    res.json(artists);
+    console.log("Obtengo los artists con el siguiente nombre: " + req.query.name);
+    console.log(artists);
+})
+
 router.route('/albums').get(function (req, res) {
     req.body
     let unqfy = loadUnqfy();
@@ -129,10 +140,10 @@ router.route('/albums/:albumId').get(function(req, res){
     console.log(album);
 })
 
-router.route('/albums/:name').get(function(req, res){
+router.route('/albumsByName').get(function(req, res){
     let unqfy = loadUnqfy();
     let albums;
-    let name = req.params.name;
+    let name = req.query.name;
     albums = unqfy.getAlbumsByName(name);
     res.status(200);
     res.json(albums);
