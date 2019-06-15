@@ -140,10 +140,8 @@ class UNQfy {
     return artistFound;
   }
 
-  getArtistByName(name) {
-    let artistFound = this.listOfArtists.find(artist => artist.name === name);
-    if (!artistFound) { throw new modelExep.NotFoundException }
-    return artistFound;
+  getArtistByName(artistName) {
+   return this.listOfArtists.filter((artist) => artist.getName().toLowerCase().includes(artistName.toLowerCase()));
   }
 
   getAlbumsByName(albumName){

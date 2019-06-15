@@ -15,6 +15,10 @@ class Artist {
     return this.albums;
   }
 
+  getName() {
+    return this.name;
+  }
+
   removeAlbum(albumId) {
     this.albums = this.albums.filter(a => a.id !== albumId);
   }
