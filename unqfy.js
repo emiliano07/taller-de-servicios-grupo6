@@ -26,7 +26,7 @@ class UNQfy {
   // retorna: el nuevo artista creado
   addArtist(artistData) {
     if (this.listOfArtists.find(artist => artist.name === artistData.name && artist.country === artistData.country)) {
-      throw new modelExep.DuplicatedException('Artista duplicado');
+      throw new modelExep.DuplicatedException;
     }
     const newArtist = new Artist(artistData.name, artistData.country, this.idGenerator.getIdForArtist());
     this.listOfArtists.push(newArtist);
@@ -45,7 +45,7 @@ class UNQfy {
   // retorna: el nuevo album creado
   addAlbum(artistId, albumData) {
     if (this.getAlbums().find(album => album.name === albumData.name && album.year === albumData.year)) {
-      throw new modelExep.DuplicatedException("album duplicado")
+      throw new modelExep.DuplicatedException;
     }
     const artist = this.getArtistById(artistId);
     const album = new Album(albumData.name, albumData.year, this.idGenerator.getIdForAlbum());
@@ -114,14 +114,14 @@ class UNQfy {
 
   getAlbumById(id) {
     let albumFound = this.getAlbums().find(album => album.id == id)
-    if (!albumFound) { throw new modelExep.NotFoundException('Album no encontrado') }
+    if (!albumFound) { throw new modelExep.NotFoundException }
     return albumFound
   }
 
   getTrackById(id) {
     const track = this.listOfTracks.find(track => track.id === id);
     if (!track) {
-      throw new modelExep.NotFoundException('Track no encontrado');
+      throw new modelExep.NotFoundException;
     }
     return track;
   }
@@ -129,21 +129,27 @@ class UNQfy {
   getPlaylistById(id) {
     const playlist = this.playLists.find(pl => pl.id === id);
     if (!playlist) {
-      throw new modelExep.NotFoundException('Playlist no encontrado');
+      throw new modelExep.NotFoundException;
     }
     return playlist;
   }
 
   getArtistById(id) {
     let artistFound = this.listOfArtists.find(artist => artist.id === id);
-    if (!artistFound) { throw new modelExep.NotFoundException('Artista no encontrado') }
+    if (!artistFound) { throw new modelExep.NotFoundException }
     return artistFound;
   }
 
   getArtistByName(name) {
     let artistFound = this.listOfArtists.find(artist => artist.name === name);
-    if (!artistFound) { throw new modelExep.NotFoundException('Artista no encontrado') }
+    if (!artistFound) { throw new modelExep.NotFoundException }
     return artistFound;
+  }
+
+  getAlbumsByName(albumName){
+    let allAlbums = this.getAlbums();
+    let filtered = allAlbums.filter((album) => album.getName().toLowerCase().includes(albumName.toLowerCase()));
+    return filtered;
   }
 
   getTracks() {
@@ -191,6 +197,14 @@ class UNQfy {
   deletePlaylist(playlistId) {
     const playlist = this.getPlaylistById(playlistId);
     this.playLists = this.playLists.filter(p => p !== playlist);
+  }
+
+  getLyrics(track) {
+    const lyric = track.getLyric();
+    if (lyric == undefined){
+      //lo busco en MusicMatch y lo cargo en track.lyric
+    }
+    return this.lyric;
   }
 
   save(filename = 'data.json') {

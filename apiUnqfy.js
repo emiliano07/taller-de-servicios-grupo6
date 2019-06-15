@@ -129,6 +129,17 @@ router.route('/albums/:albumId').get(function(req, res){
     console.log(album);
 })
 
+router.route('/albums/:name').get(function(req, res){
+    let unqfy = loadUnqfy();
+    let albums;
+    let name = req.params.name;
+    albums = unqfy.getAlbumsByName(name);
+    res.status(200);
+    res.json(albums);
+    console.log("Obtengo los albunes con el siguiente nombre: " + req.query.name);
+    console.log(albums);
+})
+
 router.route('/albums/:albumId').put(function(req, res){
     const data = req.body;
     let unqfy = loadUnqfy();

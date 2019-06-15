@@ -15,6 +15,10 @@ class Album {
     return this.tracks;
   }
 
+  getName() {
+    return this.name;
+  }
+
   removeTrack(trackId) {
     this.tracks = this.tracks.filter(t => t.id !== trackId);
   }
