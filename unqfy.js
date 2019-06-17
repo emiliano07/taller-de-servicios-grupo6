@@ -1,6 +1,7 @@
 
 const picklify = require('picklify'); // para cargar/guarfar unqfy
 const fs = require('fs'); // para cargar/guarfar unqfy
+const rp = require('request-promise');
 
 const Artist = require('./src/model/Artist').Artist;
 const Album = require('./src/model/Album').Album;
@@ -9,6 +10,7 @@ const PlayList = require('./src/model/PlayList').PlayList;
 const modelExep = require('./src/model/ModelException');
 const IdGenerator = require('./src/model/IdGenerator').IdGenerator;
 
+const credentials = JSON.parse(fs.readFileSync('spotifyCreds.json'));
 
 class UNQfy {
 
@@ -141,10 +143,10 @@ class UNQfy {
   }
 
   getArtistByName(artistName) {
-   return this.listOfArtists.filter((artist) => artist.getName().toLowerCase().includes(artistName.toLowerCase()));
+    return this.listOfArtists.filter((artist) => artist.getName().toLowerCase().includes(artistName.toLowerCase()));
   }
 
-  getAlbumsByName(albumName){
+  getAlbumsByName(albumName) {
     let allAlbums = this.getAlbums();
     let filtered = allAlbums.filter((album) => album.getName().toLowerCase().includes(albumName.toLowerCase()));
     return filtered;
@@ -197,9 +199,39 @@ class UNQfy {
     this.playLists = this.playLists.filter(p => p !== playlist);
   }
 
+  populateAlbumsForArtist(artistSpotifyId, artist, callback) {
+    const options = {
+      url: `https://api.spotify.com/v1/artists/${artistSpotifyId}/albums`,
+      headers: { Authorization: 'Bearer ' + credentials.access_token },
+      json: true,
+    };
+
+    rp.get(options).then((response) => {
+      response.items.map(album => {
+        try {
+          this.addAlbum(artist.id, {name: album.name, year: album.release_date});
+          console.log(`Album ${album.name} created`);
+        } catch (error) {
+          console.log(`Error: Album ${album.name} - ${error.message}`);
+        }
+      });
+      callback();
+    });
+  }
+
+  searchArtistSpotifyId(artistName, callback) {
+    const options = {
+      url: `https://api.spotify.com/v1/search?type=artist&limit=1&q=${artistName}`,
+      headers: { Authorization: 'Bearer ' + credentials.access_token },
+      json: true,
+    };
+
+    rp.get(options).then((response) => callback(response.artists.items[0].id));
+  }
+
   getLyrics(track) {
     const lyric = track.getLyric();
-    if (lyric == undefined){
+    if (lyric == undefined) {
       //lo busco en MusicMatch y lo cargo en track.lyric
     }
     return this.lyric;
