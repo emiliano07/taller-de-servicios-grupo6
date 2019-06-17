@@ -8,7 +8,17 @@ const populateAlbumsForArtist = (unqfy, args) => {
   unqfy.searchArtistSpotifyId(artistName, (spotifyId) => {
     unqfy.populateAlbumsForArtist(spotifyId, artist, () => unqfy.save());
   });
-
 };
 
-module.exports = { populateAlbumsForArtist }
+const importLyrics = (unqfy, args) => {
+  const trackId = Number(args[0]);
+  const track = unqfy.getTrackById(trackId);
+
+  unqfy.getLyrics(track, lyrics => {
+    console.log(lyrics);
+    track.lyrics = lyrics;
+    unqfy.save();
+  });
+}
+
+module.exports = { populateAlbumsForArtist, importLyrics }

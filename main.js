@@ -57,7 +57,8 @@ const Commands = {
   track: (...args) => run(TrackCommands, ...args),
   search: (...args) => run(SearchCommands, ...args),
   playlist: (...args) => run(PlaylistCommands, ...args),
-  populateAlbumsForArtist: ImportCommands.populateAlbumsForArtist
+  populateAlbumsForArtist: ImportCommands.populateAlbumsForArtist,
+  importLyrics: ImportCommands.importLyrics
 };
 
 function run(commands, unqfy, params) {
