@@ -19,8 +19,6 @@ class UNQfy {
   constructor() {
     this.idGenerator = new IdGenerator();
     this.listOfArtists = [];
-    this.listOfAlbums = [];
-    this.listOfTracks = [];
     this.playLists = [];
   }
 
@@ -55,7 +53,6 @@ class UNQfy {
     const album = new Album(albumData.name, albumData.year, this.idGenerator.getIdForAlbum());
     artist.addAlbum(album);
     album.setArtist(artist);
-    this.listOfAlbums.push(album);
     return album;
   }
 
@@ -68,7 +65,6 @@ class UNQfy {
     const track = new Track(trackData.name, trackData.duration, trackData.genres, this.idGenerator.getIdForTrack());
     const album = this.getAlbumById(albumId);
 
-    this.listOfTracks.push(track);
     album.addTrack(track);
     track.setAlbum(album);
     return track;
@@ -104,16 +100,14 @@ class UNQfy {
 
     return {
       artists: this.listOfArtists.filter(search),
-      albums: this.listOfAlbums.filter(search),
-      tracks: this.listOfTracks.filter(search),
+      albums: this.getAlbums().filter(search),
+      tracks: this.getTracks().filter(search),
       playlists: this.playLists.filter(search)
     };
   }
 
   getAlbums() {
-    let a = [];
-    return this.listOfArtists.map(artista => artista.getAlbums())
-      .reduce((a, b) => a.concat(b), []);
+    return this.listOfArtists.reduce((albums, artist) => albums.concat(artist.getAlbums()), []);
   }
 
   getAlbumById(id) {
@@ -123,7 +117,7 @@ class UNQfy {
   }
 
   getTrackById(id) {
-    const track = this.listOfTracks.find(track => track.id === id);
+    const track = this.getTracks().find(track => track.id === id);
     if (!track) {
       throw new modelExep.NotFoundException;
     }
@@ -155,9 +149,7 @@ class UNQfy {
   }
 
   getTracks() {
-    let a = [];
-    return this.getAlbums().map(album => album.tracks)
-      .reduce((a, b) => a.concat(b), []);
+    return this.getAlbums().reduce((tracks, album) => tracks.concat(album.tracks), []);
   }
 
   // genres: array de generos(strings)
@@ -186,13 +178,11 @@ class UNQfy {
     const album = this.getAlbumById(albumId);
     album.artist.removeAlbum(albumId);
     album.getTracks().map(t => this.deleteTrack(t.id));
-    this.listOfAlbums = this.listOfAlbums.filter(a => a.id !== albumId);
   }
 
   deleteTrack(trackId) {
     const track = this.getTrackById(trackId);
     track.album.removeTrack(trackId);
-    this.listOfTracks = this.listOfTracks.filter(t => t !== track);
     this.playLists.map(pl => pl.removeTrack(trackId));
   }
 
