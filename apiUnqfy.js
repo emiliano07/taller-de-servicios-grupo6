@@ -52,6 +52,7 @@ router.route('/artists').post(function(req, res){
         country: data.country
     }
     let artist = unqfy.addArtist(artistData);
+    unqfy.save();
     res.status(201);
     res.json(artist);
     console.log("Agregado un nuevo artista con los siguientes datos");
@@ -72,6 +73,7 @@ router.route('/artists/:artistId').delete(function(req, res){
     let id = req.params.artistId;
     if(id != "undefined"){
     unqfy.deleteArtist(parseInt(id));
+    unqfy.save();
     res.status(204);
     res.json();
     console.log("Borrado artista con id " + req.params.artistId);
@@ -87,6 +89,7 @@ router.route('/artists/:artistId').put(function(req, res){
     let artist = unqfy.getArtistById(parseInt(id));
     artist.name = data.name;
     artist.country = data.country;
+    unqfy.save();
     res.status(200);
     res.json(artist);
     console.log("Se actualizaron los datos del artista con el id " + id);
@@ -124,6 +127,7 @@ router.route('/albums').post(function(req, res){
         year: data.year
     };
     let album = unqfy.addAlbum(albumData.artistId, albumData);
+    unqfy.save();
     res.status(201);
     res.json(album);
     console.log("Agregado nuevo album con los siguientes datos:");
@@ -157,6 +161,7 @@ router.route('/albums/:albumId').put(function(req, res){
     let id = req.params.albumId
     let album = unqfy.getAlbumById(parseInt(id));
     album.year = data.year;
+    unqfy.save();
     res.status(200);
     res.json(album);
     console.log("Se actualizo el año del album con id " + id);
@@ -167,6 +172,7 @@ router.route('/albums/:albumId').delete(function(req, res){
     let unqfy = loadUnqfy();
     let id = req.params.albumId;
     unqfy.deleteAlbum(parseInt(id));
+    unqfy.save();
     res.status(204);
     res.json();
     console.log("Borrado album con id " + id);
