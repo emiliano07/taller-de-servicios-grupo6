@@ -4,6 +4,7 @@ class Album {
     this.name = name;
     this.year = year;
     this.tracks = [];
+    this.artist = undefined;
   }
 
   addTrack(track) {
