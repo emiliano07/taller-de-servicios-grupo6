@@ -166,10 +166,30 @@ router.route('/albums/:albumId').put(function(req, res){
 router.route('/albums/:albumId').delete(function(req, res){
     let unqfy = loadUnqfy();
     let id = req.params.albumId;
-    unqfy.deleteAlbumById(parseInt(id));
+    unqfy.deleteAlbum(parseInt(id));
     res.status(204);
     res.json();
     console.log("Borrado album con id " + id);
+})
+
+router.route('/tracks/:trackId/lyrics').get(function(req, res, next){
+    const unqfy = loadUnqfy();
+    const id = parseInt(req.params.trackId);
+    const track = unqfy.getTrackById(id);
+
+    if (track.lyrics) {
+        return res.status(200).json({name: track.name, lyrics: track.lyrics});
+    }
+
+    unqfy.getLyrics(track, (lyrics, error) => {
+        if (error) {
+            return next(new ResourceNotFoundError());
+        }
+
+        track.lyrics = lyrics;
+        unqfy.save();
+        res.status(200).json({name: track.name, lyrics: lyrics});
+    });
 })
 
 function errorHandler(err, req, res, next){

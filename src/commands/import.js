@@ -14,7 +14,12 @@ const importLyrics = (unqfy, args) => {
   const trackId = Number(args[0]);
   const track = unqfy.getTrackById(trackId);
 
-  unqfy.getLyrics(track, lyrics => {
+  unqfy.getLyrics(track, (lyrics, error) => {
+    if (error) {
+      console.log(error.message);
+      return;
+    }
+
     console.log(lyrics);
     track.lyrics = lyrics;
     unqfy.save();

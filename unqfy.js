@@ -250,9 +250,14 @@ class UNQfy {
       };
 
       rp.get(options).then(response => {
+        const lyrics = response.message.body.lyrics;
+        if (lyrics === undefined) {
+          throw new Error('Musixmatch lyrics not found');
+        }
+
         callback(response.message.body.lyrics.lyrics_body);
-      });
-    }).catch(error => console.log(error.message));
+      }).catch(error => callback(null, error));
+    }).catch(error => callback(null, error));
   }
 
   save(filename = 'data.json') {

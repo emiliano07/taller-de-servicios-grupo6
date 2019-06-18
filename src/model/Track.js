@@ -4,7 +4,7 @@ class Track {
     this.name = name;
     this.duration = duration;
     this.genres = genres;
-    this.lyric = undefined;
+    this.lyrics = undefined;
   }
 
   getLyric() {
