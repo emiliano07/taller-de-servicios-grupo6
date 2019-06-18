@@ -23,7 +23,7 @@ const TrackCommands = {
     console.log('Track eliminado.');
   },
 
-  list: (unqfy) => unqfy.listOfTracks.map(track => console.log(track)),
+  list: (unqfy) => unqfy.getTracks().map(track => console.log(track)),
 
   print: (unqfy, trackId) => {
     const track = unqfy.getTrackById(Number(trackId));
