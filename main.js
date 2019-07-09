@@ -6,6 +6,7 @@ const AlbumCommands = require('./src/commands/album');
 const TrackCommands = require('./src/commands/track');
 const SearchCommands = require('./src/commands/search');
 const PlaylistCommands = require('./src/commands/playlist');
+const ImportCommands = require('./src/commands/import');
 
 // Retorna una instancia de UNQfy. Si existe filename, recupera la instancia desde el archivo.
 function getUNQfy(filename = 'data.json') {
@@ -55,7 +56,9 @@ const Commands = {
   album: (...args) => run(AlbumCommands, ...args),
   track: (...args) => run(TrackCommands, ...args),
   search: (...args) => run(SearchCommands, ...args),
-  playlist: (...args) => run(PlaylistCommands, ...args)
+  playlist: (...args) => run(PlaylistCommands, ...args),
+  populateAlbumsForArtist: ImportCommands.populateAlbumsForArtist,
+  importLyrics: ImportCommands.importLyrics
 };
 
 function run(commands, unqfy, params) {

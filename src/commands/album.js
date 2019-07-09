@@ -21,7 +21,7 @@ const AlbumCommands = {
     console.log('Album eliminado.');
   },
 
-  list: (unqfy) => unqfy.listOfAlbums.map(album => console.log(album)),
+  list: (unqfy) => unqfy.getAlbums().map(album => console.log(album)),
 
   print: (unqfy, albumId) => {
     const album = unqfy.getAlbumById(Number(albumId));

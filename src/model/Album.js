@@ -4,6 +4,7 @@ class Album {
     this.name = name;
     this.year = year;
     this.tracks = [];
+    this.artist = undefined;
   }
 
   addTrack(track) {
@@ -15,6 +16,10 @@ class Album {
     return this.tracks;
   }
 
+  getName() {
+    return this.name;
+  }
+
   removeTrack(trackId) {
     this.tracks = this.tracks.filter(t => t.id !== trackId);
   }
@@ -22,6 +27,17 @@ class Album {
   setArtist(artist) {
     this.artist = artist;
   }
+
+  toJSON(){
+    let data = {
+        id : this.id,
+        name : this.name,
+        year : this.year,
+        tracks : this.tracks,
+    };
+    return data;
+  }
+  
 }
 
 module.exports = {

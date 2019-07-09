@@ -4,6 +4,12 @@ class Track {
     this.name = name;
     this.duration = duration;
     this.genres = genres;
+    this.lyrics = undefined;
+    this.album = undefined;
+  }
+
+  getLyric() {
+    return this.lyric;
   }
 
   setAlbum(album) {
@@ -12,6 +18,17 @@ class Track {
 
   includesGenres(genres) {
     return this.genres.some(genre => genres.includes(genre))
+  }
+
+  toJSON(){
+    let data = {
+        id : this.id,
+        name : this.name,
+        duration : this.duration,
+        genres : this.genres,
+        lyric : this.lyrics,
+    };
+    return data;
   }
 }
 

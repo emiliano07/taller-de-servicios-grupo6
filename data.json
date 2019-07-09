@@ -7,197 +7,186 @@
   ],
   "objects": {
     "__00001__": {
+      "idGenerator": "__00002__",
+      "listOfArtists": "__00003__",
+      "playLists": "__00004__",
+      "listeners": "__00005__"
+    },
+    "__00002__": {
       "idArtist": 2,
       "idAlbum": 3,
       "idTrack": 6,
-      "idPlaylist": 1,
-      "listOfArtists": "__00002__",
-      "listOfAlbums": "__00003__",
-      "listOfTracks": "__00004__",
-      "playLists": "__00005__",
-      "listeners": "__00006__"
-    },
-    "__00002__": {
-      "0": "__00007__",
-      "1": "__00008__"
+      "idPlaylist": 1
     },
     "__00003__": {
-      "0": "__00009__",
-      "1": "__00010__",
-      "2": "__00011__"
+      "0": "__00006__",
+      "1": "__00007__"
     },
     "__00004__": {
-      "0": "__00012__",
-      "1": "__00013__",
-      "2": "__00014__",
-      "3": "__00015__",
-      "4": "__00016__",
-      "5": "__00017__"
+      "0": "__00008__"
     },
-    "__00005__": {
-      "0": "__00018__"
-    },
-    "__00006__": {},
-    "__00007__": {
+    "__00005__": {},
+    "__00006__": {
       "id": 0,
       "name": "La Renga",
       "country": "Argentina",
-      "albums": "__00019__"
+      "albums": "__00009__"
     },
-    "__00008__": {
+    "__00007__": {
       "id": 1,
       "name": "Led Zeppelin",
       "country": "Inglaterra",
-      "albums": "__00020__"
+      "albums": "__00010__"
+    },
+    "__00008__": {
+      "id": 0,
+      "name": "Playlist de rock",
+      "genresToInclude": "__00011__",
+      "maxDuration": "700",
+      "tracks": "__00012__"
     },
     "__00009__": {
+      "0": "__00013__",
+      "1": "__00014__"
+    },
+    "__00010__": {
+      "0": "__00015__"
+    },
+    "__00011__": {
+      "0": "rock"
+    },
+    "__00012__": {
+      "0": "__00016__",
+      "1": "__00017__",
+      "2": "__00018__"
+    },
+    "__00013__": {
       "id": 0,
       "name": "Esquivando charcos",
       "year": "1991",
-      "tracks": "__00021__",
-      "artist": "__00007__"
+      "tracks": "__00019__",
+      "artist": "__00006__"
     },
-    "__00010__": {
+    "__00014__": {
       "id": 1,
       "name": "Despedazado por mil partes",
       "year": "1996",
-      "tracks": "__00022__",
-      "artist": "__00007__"
+      "tracks": "__00020__",
+      "artist": "__00006__"
     },
-    "__00011__": {
+    "__00015__": {
       "id": 2,
       "name": "Led Zeppelin",
       "year": "1969",
-      "tracks": "__00023__",
-      "artist": "__00008__"
+      "tracks": "__00021__",
+      "artist": "__00007__"
     },
-    "__00012__": {
+    "__00016__": {
       "id": 0,
       "name": "Somos los mismos de siempre",
       "duration": "125",
-      "genres": "__00024__",
-      "album": "__00009__"
+      "genres": "__00022__",
+      "lyrics": "Adónde vas, qué buscás\nen el frío de la noche.\nEn tu andar, veo mi andar\ny somos los mismos de siempre.\nLa soledad, como un disfraz\nte vende entre la gente.\nY hay un cartel, te invita a entrar,\n...\n\n******* This Lyrics is NOT for Commercial use *******\n(1409618461359)",
+      "album": "__00013__"
     },
-    "__00013__": {
+    "__00017__": {
       "id": 1,
       "name": "Voy a bailar a la nave del olvido",
       "duration": "180",
-      "genres": "__00025__",
-      "album": "__00009__"
+      "genres": "__00023__",
+      "lyrics": "Hoy voy a bailar a la nave del olvido, olvido mi gotera y mi ración criminal, perfumes baratos, ambientes picados, discos rayados, ya quiero despegar.\nHoy voy a bailar a la nave del olvido, olvido a mis hermanos, estampitas de estación.\nVení morocha, que\n...\n\n******* This Lyrics is NOT for Commercial use *******\n(1409618461359)",
+      "album": "__00013__"
     },
-    "__00014__": {
+    "__00018__": {
       "id": 2,
       "name": "A la carga mi rocanrol",
       "duration": "200",
-      "genres": "__00026__",
-      "album": "__00010__"
-    },
-    "__00015__": {
-      "id": 3,
-      "name": "El viento que todo empuja",
-      "duration": "200",
-      "genres": "__00027__",
-      "album": "__00010__"
-    },
-    "__00016__": {
-      "id": 4,
-      "name": "Good Times, Bad Times",
-      "duration": "200",
-      "genres": "__00028__",
-      "album": "__00011__"
-    },
-    "__00017__": {
-      "id": 5,
-      "name": "Black Mountain Side",
-      "duration": "214",
-      "genres": "__00029__",
-      "album": "__00011__"
-    },
-    "__00018__": {
-      "id": 0,
-      "name": "Playlist de rock",
-      "genresToInclude": "__00030__",
-      "maxDuration": "700",
-      "tracks": "__00031__"
+      "genres": "__00024__",
+      "album": "__00014__"
     },
     "__00019__": {
-      "0": "__00009__",
-      "1": "__00010__"
-    },
-    "__00020__": {
-      "0": "__00011__"
-    },
-    "__00021__": {
-      "0": "__00012__",
-      "1": "__00013__"
-    },
-    "__00022__": {
-      "0": "__00014__",
-      "1": "__00015__"
-    },
-    "__00023__": {
       "0": "__00016__",
       "1": "__00017__"
+    },
+    "__00020__": {
+      "0": "__00018__",
+      "1": "__00025__"
+    },
+    "__00021__": {
+      "0": "__00026__",
+      "1": "__00027__"
+    },
+    "__00022__": {
+      "0": "rock"
+    },
+    "__00023__": {
+      "0": "rock",
+      "1": "blues"
     },
     "__00024__": {
       "0": "rock"
     },
     "__00025__": {
-      "0": "rock",
-      "1": "blues"
+      "id": 3,
+      "name": "El viento que todo empuja",
+      "duration": "200",
+      "genres": "__00028__",
+      "album": "__00014__"
     },
     "__00026__": {
-      "0": "rock"
+      "id": 4,
+      "name": "Good Times, Bad Times",
+      "duration": "200",
+      "genres": "__00029__",
+      "album": "__00015__"
     },
     "__00027__": {
-      "0": "reggae"
+      "id": 5,
+      "name": "Black Mountain Side",
+      "duration": "214",
+      "genres": "__00030__",
+      "album": "__00015__"
     },
     "__00028__": {
-      "0": "rock"
+      "0": "reggae"
     },
     "__00029__": {
       "0": "rock"
     },
     "__00030__": {
       "0": "rock"
-    },
-    "__00031__": {
-      "0": "__00012__",
-      "1": "__00013__",
-      "2": "__00014__"
     }
   },
   "types": {
     "__00001__": "UNQfy",
-    "__00002__": "Array",
+    "__00002__": "IdGenerator",
     "__00003__": "Array",
     "__00004__": "Array",
     "__00005__": "Array",
-    "__00006__": "Array",
+    "__00006__": "Artist",
     "__00007__": "Artist",
-    "__00008__": "Artist",
-    "__00009__": "Album",
-    "__00010__": "Album",
-    "__00011__": "Album",
-    "__00012__": "Track",
-    "__00013__": "Track",
-    "__00014__": "Track",
-    "__00015__": "Track",
+    "__00008__": "PlayList",
+    "__00009__": "Array",
+    "__00010__": "Array",
+    "__00011__": "Array",
+    "__00012__": "Array",
+    "__00013__": "Album",
+    "__00014__": "Album",
+    "__00015__": "Album",
     "__00016__": "Track",
     "__00017__": "Track",
-    "__00018__": "PlayList",
+    "__00018__": "Track",
     "__00019__": "Array",
     "__00020__": "Array",
     "__00021__": "Array",
     "__00022__": "Array",
     "__00023__": "Array",
     "__00024__": "Array",
-    "__00025__": "Array",
-    "__00026__": "Array",
-    "__00027__": "Array",
+    "__00025__": "Track",
+    "__00026__": "Track",
+    "__00027__": "Track",
     "__00028__": "Array",
     "__00029__": "Array",
-    "__00030__": "Array",
-    "__00031__": "Array"
+    "__00030__": "Array"
   }
 }
