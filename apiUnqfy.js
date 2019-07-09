@@ -1,5 +1,6 @@
 const fs = require('fs');
 const promisify = require('util').promisify;
+const MusixMatch = require('./MusixMatch').MusixMatch;
 
 const unqmod = require('./unqfy');
 
@@ -179,6 +180,7 @@ router.route('/albums/:albumId').delete(function(req, res){
 })
 
 router.route('/tracks/:trackId/lyrics').get(function(req, res, next){
+    const musixMatch = new MusixMatch()
     const unqfy = loadUnqfy();
     const id = parseInt(req.params.trackId);
     const track = unqfy.getTrackById(id);
@@ -187,7 +189,7 @@ router.route('/tracks/:trackId/lyrics').get(function(req, res, next){
         return res.status(200).json({name: track.name, lyrics: track.lyrics});
     }
 
-    unqfy.getLyrics(track, (lyrics, error) => {
+    musixMatch.getLyrics(track, (lyrics, error) => {
         if (error) {
             return next(new ResourceNotFoundError());
         }

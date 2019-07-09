@@ -14,8 +14,8 @@
     },
     "__00002__": {
       "idArtist": 2,
-      "idAlbum": 22,
-      "idTrack": 7,
+      "idAlbum": 3,
+      "idTrack": 6,
       "idPlaylist": 1
     },
     "__00003__": {
@@ -50,295 +50,110 @@
       "1": "__00014__"
     },
     "__00010__": {
-      "0": "__00015__",
-      "1": "__00016__",
-      "2": "__00017__",
-      "3": "__00018__",
-      "4": "__00019__",
-      "5": "__00020__",
-      "6": "__00021__",
-      "7": "__00022__",
-      "8": "__00023__",
-      "9": "__00024__",
-      "10": "__00025__",
-      "11": "__00026__",
-      "12": "__00027__",
-      "13": "__00028__",
-      "14": "__00029__",
-      "15": "__00030__",
-      "16": "__00031__",
-      "17": "__00032__",
-      "18": "__00033__",
-      "19": "__00034__"
+      "0": "__00015__"
     },
     "__00011__": {
       "0": "rock"
     },
     "__00012__": {
-      "0": "__00035__",
-      "1": "__00036__",
-      "2": "__00037__"
+      "0": "__00016__",
+      "1": "__00017__",
+      "2": "__00018__"
     },
     "__00013__": {
       "id": 0,
       "name": "Esquivando charcos",
       "year": "1991",
-      "tracks": "__00038__",
+      "tracks": "__00019__",
       "artist": "__00006__"
     },
     "__00014__": {
       "id": 1,
       "name": "Despedazado por mil partes",
       "year": "1996",
-      "tracks": "__00039__",
+      "tracks": "__00020__",
       "artist": "__00006__"
     },
     "__00015__": {
       "id": 2,
       "name": "Led Zeppelin",
       "year": "1969",
-      "tracks": "__00040__",
+      "tracks": "__00021__",
       "artist": "__00007__"
     },
     "__00016__": {
-      "id": 3,
-      "name": "The Complete BBC Sessions",
-      "year": "2016-09-16",
-      "tracks": "__00041__",
-      "artist": "__00007__"
-    },
-    "__00017__": {
-      "id": 4,
-      "name": "Physical Graffiti (Deluxe Edition)",
-      "year": "2015-02-20",
-      "tracks": "__00042__",
-      "artist": "__00007__"
-    },
-    "__00018__": {
-      "id": 5,
-      "name": "Celebration Day",
-      "year": "2012-11-19",
-      "tracks": "__00043__",
-      "artist": "__00007__"
-    },
-    "__00019__": {
-      "id": 6,
-      "name": "Mothership (Remastered)",
-      "year": "2007",
-      "tracks": "__00044__",
-      "artist": "__00007__"
-    },
-    "__00020__": {
-      "id": 7,
-      "name": "How the West Was Won (2018 Remaster)",
-      "year": "2003-05-27",
-      "tracks": "__00045__",
-      "artist": "__00007__"
-    },
-    "__00021__": {
-      "id": 8,
-      "name": "Coda (Deluxe Edition)",
-      "year": "1982-11-19",
-      "tracks": "__00046__",
-      "artist": "__00007__"
-    },
-    "__00022__": {
-      "id": 9,
-      "name": "Coda (Remastered)",
-      "year": "1982-11-19",
-      "tracks": "__00047__",
-      "artist": "__00007__"
-    },
-    "__00023__": {
-      "id": 10,
-      "name": "Coda",
-      "year": "1982-11-19",
-      "tracks": "__00048__",
-      "artist": "__00007__"
-    },
-    "__00024__": {
-      "id": 11,
-      "name": "In Through The Out Door (Deluxe Edition)",
-      "year": "1979-08-15",
-      "tracks": "__00049__",
-      "artist": "__00007__"
-    },
-    "__00025__": {
-      "id": 12,
-      "name": "In Through The Out Door (Remastered)",
-      "year": "1979-08-15",
-      "tracks": "__00050__",
-      "artist": "__00007__"
-    },
-    "__00026__": {
-      "id": 13,
-      "name": "In Through The Out Door",
-      "year": "1979-08-15",
-      "tracks": "__00051__",
-      "artist": "__00007__"
-    },
-    "__00027__": {
-      "id": 14,
-      "name": "The Song Remains The Same (2018 Remaster)",
-      "year": "1976-10-22",
-      "tracks": "__00052__",
-      "artist": "__00007__"
-    },
-    "__00028__": {
-      "id": 15,
-      "name": "Presence (Deluxe Edition)",
-      "year": "1976-03-31",
-      "tracks": "__00053__",
-      "artist": "__00007__"
-    },
-    "__00029__": {
-      "id": 16,
-      "name": "Presence (Remastered)",
-      "year": "1976-03-31",
-      "tracks": "__00054__",
-      "artist": "__00007__"
-    },
-    "__00030__": {
-      "id": 17,
-      "name": "Presence",
-      "year": "1976-03-31",
-      "tracks": "__00055__",
-      "artist": "__00007__"
-    },
-    "__00031__": {
-      "id": 18,
-      "name": "Physical Graffiti",
-      "year": "1975-02-24",
-      "tracks": "__00056__",
-      "artist": "__00007__"
-    },
-    "__00032__": {
-      "id": 19,
-      "name": "Physical Graffiti (Remastered)",
-      "year": "1975-02-24",
-      "tracks": "__00057__",
-      "artist": "__00007__"
-    },
-    "__00033__": {
-      "id": 20,
-      "name": "Physical Graffiti (Deluxe Edition)",
-      "year": "1975-02-24",
-      "tracks": "__00058__",
-      "artist": "__00007__"
-    },
-    "__00034__": {
-      "id": 21,
-      "name": "Houses Of The Holy (Deluxe Edition)",
-      "year": "1973-03-28",
-      "tracks": "__00059__",
-      "artist": "__00007__"
-    },
-    "__00035__": {
       "id": 0,
       "name": "Somos los mismos de siempre",
       "duration": "125",
-      "genres": "__00060__",
+      "genres": "__00022__",
       "lyrics": "Adónde vas, qué buscás\nen el frío de la noche.\nEn tu andar, veo mi andar\ny somos los mismos de siempre.\nLa soledad, como un disfraz\nte vende entre la gente.\nY hay un cartel, te invita a entrar,\n...\n\n******* This Lyrics is NOT for Commercial use *******\n(1409618461359)",
       "album": "__00013__"
     },
-    "__00036__": {
+    "__00017__": {
       "id": 1,
       "name": "Voy a bailar a la nave del olvido",
       "duration": "180",
-      "genres": "__00061__",
+      "genres": "__00023__",
       "lyrics": "Hoy voy a bailar a la nave del olvido, olvido mi gotera y mi ración criminal, perfumes baratos, ambientes picados, discos rayados, ya quiero despegar.\nHoy voy a bailar a la nave del olvido, olvido a mis hermanos, estampitas de estación.\nVení morocha, que\n...\n\n******* This Lyrics is NOT for Commercial use *******\n(1409618461359)",
       "album": "__00013__"
     },
-    "__00037__": {
+    "__00018__": {
       "id": 2,
       "name": "A la carga mi rocanrol",
       "duration": "200",
-      "genres": "__00062__",
-      "lyrics": "A la carga mi rocanrol desborda cualquier mar\nQue contenga el gran vaso de tu cola de paja\nY si mi boca de dragon enciende la mecha\nY no te gusta que diga una sola verdad\n\nVas a usar tu prensa para aplastarme\nY a la cancion de la vida vas a desterrar\nVas a estar perdiendo el tiempo\nPorque atras nuestro viene un viento\nQue derriba todo lo que toca\nQue mi canto ya tiene otras bocas\nY ya nadie, nadie lo puede callar\n...\n\n******* This Lyrics is NOT for Commercial use *******\n(1409618461359)",
+      "genres": "__00024__",
       "album": "__00014__"
     },
-    "__00038__": {
-      "0": "__00035__",
-      "1": "__00036__",
-      "2": "__00063__"
+    "__00019__": {
+      "0": "__00016__",
+      "1": "__00017__"
     },
-    "__00039__": {
-      "0": "__00037__",
-      "1": "__00064__"
+    "__00020__": {
+      "0": "__00018__",
+      "1": "__00025__"
     },
-    "__00040__": {
-      "0": "__00065__",
-      "1": "__00066__"
+    "__00021__": {
+      "0": "__00026__",
+      "1": "__00027__"
     },
-    "__00041__": {},
-    "__00042__": {},
-    "__00043__": {},
-    "__00044__": {},
-    "__00045__": {},
-    "__00046__": {},
-    "__00047__": {},
-    "__00048__": {},
-    "__00049__": {},
-    "__00050__": {},
-    "__00051__": {},
-    "__00052__": {},
-    "__00053__": {},
-    "__00054__": {},
-    "__00055__": {},
-    "__00056__": {},
-    "__00057__": {},
-    "__00058__": {},
-    "__00059__": {},
-    "__00060__": {
+    "__00022__": {
       "0": "rock"
     },
-    "__00061__": {
+    "__00023__": {
       "0": "rock",
       "1": "blues"
     },
-    "__00062__": {
+    "__00024__": {
       "0": "rock"
     },
-    "__00063__": {
-      "id": 6,
-      "name": "Somebody To Love",
-      "duration": "120",
-      "genres": "__00067__",
-      "album": "__00013__"
-    },
-    "__00064__": {
+    "__00025__": {
       "id": 3,
       "name": "El viento que todo empuja",
       "duration": "200",
-      "genres": "__00068__",
-      "lyrics": "Hoy me detuve en tu mirada que raja el velo del dolor\nY supe que hay algo más que percibir\nEn este mundo que todo lo muele y desgarra\n\nPerdido por perdido ya ves da lo mismo vivo o muerto\nPero tu alma es otra cosa, tu alma es la que te mueve\nTu alma es mi razón, tu alma es la fuerza\n\nEl águila muerte siempre vuelve y afina su aguda vista\nHoy cualquiera puede morir sin saber como fue vivir\nYo sólo espero sin dormirme en mis sueños\nEstar tan lejos de esta ignorancia\n\n...\n\n******* This Lyrics is NOT for Commercial use *******\n(1409618461359)",
+      "genres": "__00028__",
       "album": "__00014__"
     },
-    "__00065__": {
+    "__00026__": {
       "id": 4,
       "name": "Good Times, Bad Times",
       "duration": "200",
-      "genres": "__00069__",
+      "genres": "__00029__",
       "album": "__00015__"
     },
-    "__00066__": {
+    "__00027__": {
       "id": 5,
       "name": "Black Mountain Side",
       "duration": "214",
-      "genres": "__00070__",
+      "genres": "__00030__",
       "album": "__00015__"
     },
-    "__00067__": {
-      "0": "rock",
-      "1": "pop"
-    },
-    "__00068__": {
+    "__00028__": {
       "0": "reggae"
     },
-    "__00069__": {
+    "__00029__": {
       "0": "rock"
     },
-    "__00070__": {
+    "__00030__": {
       "0": "rock"
     }
   },
@@ -358,60 +173,20 @@
     "__00013__": "Album",
     "__00014__": "Album",
     "__00015__": "Album",
-    "__00016__": "Album",
-    "__00017__": "Album",
-    "__00018__": "Album",
-    "__00019__": "Album",
-    "__00020__": "Album",
-    "__00021__": "Album",
-    "__00022__": "Album",
-    "__00023__": "Album",
-    "__00024__": "Album",
-    "__00025__": "Album",
-    "__00026__": "Album",
-    "__00027__": "Album",
-    "__00028__": "Album",
-    "__00029__": "Album",
-    "__00030__": "Album",
-    "__00031__": "Album",
-    "__00032__": "Album",
-    "__00033__": "Album",
-    "__00034__": "Album",
-    "__00035__": "Track",
-    "__00036__": "Track",
-    "__00037__": "Track",
-    "__00038__": "Array",
-    "__00039__": "Array",
-    "__00040__": "Array",
-    "__00041__": "Array",
-    "__00042__": "Array",
-    "__00043__": "Array",
-    "__00044__": "Array",
-    "__00045__": "Array",
-    "__00046__": "Array",
-    "__00047__": "Array",
-    "__00048__": "Array",
-    "__00049__": "Array",
-    "__00050__": "Array",
-    "__00051__": "Array",
-    "__00052__": "Array",
-    "__00053__": "Array",
-    "__00054__": "Array",
-    "__00055__": "Array",
-    "__00056__": "Array",
-    "__00057__": "Array",
-    "__00058__": "Array",
-    "__00059__": "Array",
-    "__00060__": "Array",
-    "__00061__": "Array",
-    "__00062__": "Array",
-    "__00063__": "Track",
-    "__00064__": "Track",
-    "__00065__": "Track",
-    "__00066__": "Track",
-    "__00067__": "Array",
-    "__00068__": "Array",
-    "__00069__": "Array",
-    "__00070__": "Array"
+    "__00016__": "Track",
+    "__00017__": "Track",
+    "__00018__": "Track",
+    "__00019__": "Array",
+    "__00020__": "Array",
+    "__00021__": "Array",
+    "__00022__": "Array",
+    "__00023__": "Array",
+    "__00024__": "Array",
+    "__00025__": "Track",
+    "__00026__": "Track",
+    "__00027__": "Track",
+    "__00028__": "Array",
+    "__00029__": "Array",
+    "__00030__": "Array"
   }
 }

@@ -24,8 +24,15 @@ class NotFoundRelException extends ModelExeption{
     }
 }
 
+class ArtistNotFound extends ModelExeption{
+    constructor(nameArtist){
+        super('ArtistNotFound', 'Artist' +  nameArtist + 'not found');
+    }
+}
+
 module.exports = {
     DuplicatedException,
     NotFoundException,
-    NotFoundRelException
+    NotFoundRelException,
+    ArtistNotFound
 }

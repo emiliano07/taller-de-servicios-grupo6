@@ -1,20 +1,26 @@
+const Spotify = require('./../../Spotify').Spotify;
+const MusixMatch = require('./../../MusixMatch').MusixMatch;
+const modelExep = require('./../model/ModelException');
+
 const populateAlbumsForArtist = (unqfy, args) => {
+  const spotify = new Spotify()
   const artistName = args[0];
   const artist = unqfy.getArtistByName(artistName)[0];
   if (!artist) {
-    throw new Error(`Artist ${artistName} not found`);
+    throw new modelExep.ArtistNotFound(artistName);
   }
   
-  unqfy.searchArtistSpotifyId(artistName, (spotifyId) => {
-    unqfy.populateAlbumsForArtist(spotifyId, artist, () => unqfy.save());
+  spotify.searchArtistSpotifyId(artistName, (spotifyId) => {
+    spotify.populateAlbumsForArtist(spotifyId, artist, () => unqfy.save());
   });
 };
 
 const importLyrics = (unqfy, args) => {
+  const musixMatch = new MusixMatch()
   const trackId = Number(args[0]);
   const track = unqfy.getTrackById(trackId);
 
-  unqfy.getLyrics(track, (lyrics, error) => {
+  musixMatch.getLyrics(track, (lyrics, error) => {
     if (error) {
       console.log(error.message);
       return;

@@ -10,10 +10,6 @@ const PlayList = require('./src/model/PlayList').PlayList;
 const modelExep = require('./src/model/ModelException');
 const IdGenerator = require('./src/model/IdGenerator').IdGenerator;
 
-const credentials = JSON.parse(fs.readFileSync('spotifyCreds.json'));
-const MUSIXMATCH_URL = 'http://api.musixmatch.com/ws/1.1';
-const MUSIXMATCH_KEY = '0147a28e310e40c6108d391dd14cf0ac';
-
 class UNQfy {
 
   constructor() {
@@ -189,75 +185,6 @@ class UNQfy {
   deletePlaylist(playlistId) {
     const playlist = this.getPlaylistById(playlistId);
     this.playLists = this.playLists.filter(p => p !== playlist);
-  }
-
-  populateAlbumsForArtist(artistSpotifyId, artist, callback) {
-    const options = {
-      url: `https://api.spotify.com/v1/artists/${artistSpotifyId}/albums`,
-      headers: { Authorization: 'Bearer ' + credentials.access_token },
-      json: true,
-    };
-
-    rp.get(options).then((response) => {
-      response.items.map(album => {
-        try {
-          this.addAlbum(artist.id, {name: album.name, year: album.release_date});
-          console.log(`Album ${album.name} created`);
-        } catch (error) {
-          console.log(`Error: Album ${album.name} - ${error.message}`);
-        }
-      });
-      callback();
-    });
-  }
-
-  searchArtistSpotifyId(artistName, callback) {
-    const options = {
-      url: `https://api.spotify.com/v1/search?type=artist&limit=1&q=${artistName}`,
-      headers: { Authorization: 'Bearer ' + credentials.access_token },
-      json: true,
-    };
-
-    rp.get(options).then((response) => callback(response.artists.items[0].id));
-  }
-
-  getLyrics(track, callback) {
-    let options = {
-      uri: MUSIXMATCH_URL + '/track.search',
-      qs: {
-        apikey: MUSIXMATCH_KEY,
-        q_artist: track.album.artist.name,
-        q_track: track.name
-      },
-      json: true
-    };
-
-    rp.get(options).then(response => {
-      const musixmatchTrack = response.message.body.track_list[0];
-      if (musixmatchTrack === undefined){
-        throw new Error('Musixmatch Track not found');
-      }
-
-      const trackId = response.message.body.track_list[0].track.track_id;
-
-      let options = {
-        uri: MUSIXMATCH_URL + '/track.lyrics.get',
-        qs: {
-          apikey: MUSIXMATCH_KEY,
-          track_id: trackId
-        },
-        json: true
-      };
-
-      rp.get(options).then(response => {
-        const lyrics = response.message.body.lyrics;
-        if (lyrics === undefined) {
-          throw new Error('Musixmatch lyrics not found');
-        }
-
-        callback(response.message.body.lyrics.lyrics_body);
-      }).catch(error => callback(null, error));
-    }).catch(error => callback(null, error));
   }
 
   save(filename = 'data.json') {
