@@ -9,6 +9,7 @@ const Track = require('./src/model/Track').Track;
 const PlayList = require('./src/model/PlayList').PlayList;
 const modelExep = require('./src/model/ModelException');
 const IdGenerator = require('./src/model/IdGenerator').IdGenerator;
+const NotifyService = require('./src/service/NotifyService').NotifyService;
 
 class UNQfy {
 
@@ -16,6 +17,7 @@ class UNQfy {
     this.idGenerator = new IdGenerator();
     this.listOfArtists = [];
     this.playLists = [];
+    this.notifyService = new NotifyService();
   }
 
   // artistData: objeto JS con los datos necesarios para crear un artista
@@ -200,7 +202,7 @@ class UNQfy {
   static load(filename) {
     const serializedData = fs.readFileSync(filename, { encoding: 'utf-8' });
     //COMPLETAR POR EL ALUMNO: Agregar a la lista todas las clases que necesitan ser instanciadas
-    const classes = [UNQfy, Artist, Album, Track, PlayList, IdGenerator];
+    const classes = [UNQfy, Artist, Album, Track, PlayList, IdGenerator, NotifyService];
     return picklify.unpicklify(JSON.parse(serializedData), classes);
   }
 }
