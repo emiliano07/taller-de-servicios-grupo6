@@ -34,6 +34,27 @@ router.route('/subscribe').post((req, res) => {
   res.status(200).json();
 });
 
+router.route('/unsubscribe').post((req, res) => {
+  const artistId = req.body.artistId;
+  const email = req.body.email;
+
+  req.unqfy.notifyService.unsubscribe(artistId, email);
+  req.unqfy.save();
+
+  res.status(200).json();
+});
+
+router.route('/notify').post((req, res) => {
+  const artistId = req.body.artistId;
+  const subject = req.body.subject;
+  const message = req.body.message;
+  const from = req.body.from;
+
+  req.unqfy.notifyService.notify(artistId, subject, message, from);
+
+  res.status(200).json();
+});
+
 router.route('/subscriptions').get((req, res) => {
   const artistId = req.query.artistId;
 
