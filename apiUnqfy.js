@@ -7,7 +7,7 @@ const unqmod = require('./unqfy');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const port = 8080;
+const port = process.argv[2] || 5000;
 
 let app = express();
 let router = express.Router();
