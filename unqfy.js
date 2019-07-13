@@ -32,7 +32,7 @@ class UNQfy {
     }
     const newArtist = new Artist(artistData.name, artistData.country, this.idGenerator.getIdForArtist());
     this.listOfArtists.push(newArtist);
-    this.loogingService.logAddedArtist(newArtist)
+    this.loogingService.logChangeModel(`Artista agregado: ${newArtist.getName()}`);
     return newArtist;
 
     /* Crea un artista y lo agrega a unqfy.
@@ -53,6 +53,7 @@ class UNQfy {
     const artist = this.getArtistById(artistId);
     const album = new Album(albumData.name, albumData.year, this.idGenerator.getIdForAlbum());
     artist.addAlbum(album);
+    this.loogingService.logChangeModel(`Album agregado: ${album.getName()} al artista ${artist.getName()}`)
     album.setArtist(artist);
     return album;
   }
@@ -65,8 +66,8 @@ class UNQfy {
   addTrack(albumId, trackData) {
     const track = new Track(trackData.name, trackData.duration, trackData.genres, this.idGenerator.getIdForTrack());
     const album = this.getAlbumById(albumId);
-
     album.addTrack(track);
+    this.loogingService.logChangeModel(`Track agregado: ${track.getName()} al album ${album.getName()}`)
     track.setAlbum(album);
     return track;
   }
@@ -173,18 +174,21 @@ class UNQfy {
     const artist = this.getArtistById(artistId);
     artist.getAlbums().map(a => this.deleteAlbum(a.id));
     this.listOfArtists = this.listOfArtists.filter(a => a.id !== artistId);
+    this.loogingService.logChangeModel(`Artista borrado: ${artist.getName()}`);
   }
 
   deleteAlbum(albumId) {
     const album = this.getAlbumById(albumId);
     album.artist.removeAlbum(albumId);
     album.getTracks().map(t => this.deleteTrack(t.id));
+    this.loogingService.logChangeModel(`Album borrado: ${album.getName()}`);
   }
 
   deleteTrack(trackId) {
     const track = this.getTrackById(trackId);
     track.album.removeTrack(trackId);
     this.playLists.map(pl => pl.removeTrack(trackId));
+    this.loogingService.logChangeModel(`Track borrado: ${track.getName()}`);
   }
 
   deletePlaylist(playlistId) {

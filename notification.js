@@ -2,7 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const port = 5001;
+const port = process.argv[2] || 5001;
 const app = express();
 const router = express.Router();
 

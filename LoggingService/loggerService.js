@@ -8,7 +8,7 @@ const NOTIFICATION_BASEURL = 'http://127.0.0.1:5001/api';
 class Logger{
 
 	constructor(){
-		this.active = true;
+		this.active = false;
 	}
 
 	activate(){
@@ -71,10 +71,9 @@ class Logger{
     	}
 	}
 	
-	logAddedArtist(newArtist){
-		console.log("log nuevo artista")
-		let artist = newArtist;
-		let texto = `Se creo el artista ${artist.getName()}` 
+	logChangeModel(text){
+		console.log(text)
+		let texto = text
 
 		const options = {
 			method: 'POST',
@@ -86,7 +85,7 @@ class Logger{
    		}
 
    		rp(options).then((response) => {
-     		console.log("Log enviado: Se agrego un artista nuevo");
+     		console.log("Log enviado: " + text);
       	});
 	}
 }
