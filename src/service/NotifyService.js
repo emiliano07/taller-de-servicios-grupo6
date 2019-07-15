@@ -23,6 +23,12 @@ class NotifyService {
     this.subscriptions[artistId] = this.subscriptions[artistId].filter(e => e !== email);
   }
 
+  deleteArtist(artistId) {
+    delete this.subscriptions[artistId];
+
+    return this.subscriptions;
+  }
+
   notify(artistId, subject, message, from) {
     const client = getGmailClient();
     const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`;

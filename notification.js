@@ -63,6 +63,15 @@ router.route('/subscriptions').get((req, res) => {
   res.status(200).json(subscriptions);
 });
 
+router.route('/subscriptions').delete((req, res) => {
+  const artistId = req.body.artistId;
+
+  const subscriptions = req.unqfy.notifyService.deleteArtist(artistId);
+  req.unqfy.save();
+
+  res.status(200).json(subscriptions);
+});
+
 const errorHandler = (err, req, res, next) => {
   console.log(err);
 };
