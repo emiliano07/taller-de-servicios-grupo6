@@ -178,6 +178,7 @@ class UNQfy {
     artist.getAlbums().map(a => this.deleteAlbum(a.id));
     this.listOfArtists = this.listOfArtists.filter(a => a.id !== artistId);
     this.loogingService.logChangeModel(`Artista borrado: ${artist.getName()}`);
+    this.notifyService.deleteArtist(artistId);
   }
 
   deleteAlbum(albumId) {
