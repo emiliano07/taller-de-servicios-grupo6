@@ -10,6 +10,7 @@ const PlayList = require('./src/model/PlayList').PlayList;
 const modelExep = require('./src/model/ModelException');
 const IdGenerator = require('./src/model/IdGenerator').IdGenerator;
 const NotifyService = require('./src/service/NotifyService').NotifyService;
+const NotificationClient = require('./src/service/NotificationClient');
 const Logger = require('./LoggingService/loggerService').Logger;
 
 class UNQfy {
@@ -55,6 +56,8 @@ class UNQfy {
     artist.addAlbum(album);
     this.loogingService.logChangeModel(`Album agregado: ${album.getName()} al artista ${artist.getName()}`)
     album.setArtist(artist);
+    NotificationClient.sendUpdate(artist, albumData.name);
+
     return album;
   }
 
