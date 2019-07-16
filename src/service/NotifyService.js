@@ -30,11 +30,15 @@ class NotifyService {
   }
 
   notify(artistId, subject, message, from) {
+    this.subscriptions[artistId].map(email => this.sendEmail(artistId, subject, message, from, email));
+  }
+
+  sendEmail(artistId, subject, message, from, to) {
     const client = getGmailClient();
     const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`;
     const messageParts = [
       `From: ${from}`,
-      'To: hernan.slavich@gmail.com',
+      `To: ${to}`,
       'Content-Type: text/html; charset=utf-8',
       'MIME-Version: 1.0',
       `Subject: ${utf8Subject}`,
