@@ -6,6 +6,7 @@ const port = process.argv[2] || 5001;
 const app = express();
 const router = express.Router();
 
+const ApiError = require('./apiErrors.js');
 const unqmod = require('./unqfy');
 
 function getUNQfy(filename = 'data.json') {
@@ -28,6 +29,16 @@ router.route('/subscribe').post((req, res) => {
   const artistId = req.body.artistId;
   const email = req.body.email;
 
+  if ([artistId, email].includes(undefined)) {
+    throw new ApiError.BadRequestError();
+  }
+
+  try {
+    req.unqfy.getArtistById(Number(artistId));
+  } catch (error) {
+    throw new ApiError.ResourceNotFoundError();
+  }
+
   req.unqfy.notifyService.subscribe(artistId, email);
   req.unqfy.save();
 
@@ -37,6 +48,16 @@ router.route('/subscribe').post((req, res) => {
 router.route('/unsubscribe').post((req, res) => {
   const artistId = req.body.artistId;
   const email = req.body.email;
+
+  if ([artistId, email].includes(undefined)) {
+    throw new ApiError.BadRequestError();
+  }
+
+  try {
+    req.unqfy.getArtistById(Number(artistId));
+  } catch (error) {
+    throw new ApiError.ResourceNotFoundError();
+  }
 
   req.unqfy.notifyService.unsubscribe(artistId, email);
   req.unqfy.save();
@@ -50,6 +71,16 @@ router.route('/notify').post((req, res) => {
   const message = req.body.message;
   const from = req.body.from;
 
+  if ([artistId, subject, message, from].includes(undefined)) {
+    throw new ApiError.BadRequestError();
+  }
+
+  try {
+    req.unqfy.getArtistById(Number(artistId));
+  } catch (error) {
+    throw new ApiError.ResourceNotFoundError();
+  }
+
   req.unqfy.notifyService.notify(artistId, subject, message, from);
 
   res.status(200).json();
@@ -57,6 +88,16 @@ router.route('/notify').post((req, res) => {
 
 router.route('/subscriptions').get((req, res) => {
   const artistId = req.query.artistId;
+
+  if (artistId === undefined) {
+    throw new ApiError.BadRequestError();
+  }
+
+  try {
+    req.unqfy.getArtistById(Number(artistId));
+  } catch (error) {
+    throw new ApiError.ResourceNotFoundError();
+  }
 
   const subscriptions = req.unqfy.notifyService.subscriptions;
 
@@ -66,6 +107,16 @@ router.route('/subscriptions').get((req, res) => {
 router.route('/subscriptions').delete((req, res) => {
   const artistId = req.body.artistId;
 
+  if (artistId === undefined) {
+    throw new ApiError.BadRequestError();
+  }
+
+  try {
+    req.unqfy.getArtistById(Number(artistId));
+  } catch (error) {
+    throw new ApiError.ResourceNotFoundError();
+  }
+
   const subscriptions = req.unqfy.notifyService.deleteArtist(artistId);
   req.unqfy.save();
 
@@ -73,8 +124,20 @@ router.route('/subscriptions').delete((req, res) => {
 });
 
 const errorHandler = (err, req, res, next) => {
-  console.log(err);
+  let error = err;
+  if(error.type === 'entity.parse.failed'){
+    error = new ApiError.BadRequestError();
+  } else if (!err.statusCode) {
+    error = new ApiError.InternalServerError();
+  }
+
+  res.status(error.statusCode).json(error);
 };
 app.use(errorHandler);
+
+app.use((req, res) => {
+  const error = new ApiError.ResourceNotFoundError();
+  res.status(error.statusCode).json(error);
+});
 
 app.listen(port, () => console.log('Listening on ' + port));
