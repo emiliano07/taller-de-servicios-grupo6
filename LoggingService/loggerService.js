@@ -1,13 +1,18 @@
 const rp = require('request-promise');
 const promisify = require('util').promisify;
 const portfinder = require('portfinder');
+const loggly = require('loggly');
 
 const LOGGING_BASEURL = require('../config').LOGGING_BASEURL;
 
 class Logger {
 
   constructor() {
-    this.active = false;
+    this.active = true;
+    this.logglyClient = loggly.createClient({
+      token: '94c4ceff-f22a-47de-9347-b8bca6ce6809',
+      subdomain: 'hernanslavich'
+    });
   }
 
   activate() {
@@ -68,6 +73,14 @@ class Logger {
         console.log("Log enviado!");
       }).catch(error => console.log('No se pudo conectar al servicio de logging: ' + error.message));
     }
+  }
+
+  logToLoggly(text) {
+    this.logglyClient.log(text, (err, result) => {
+      console.log(text);
+      console.log('log enviado a loggly');
+      console.log(result);
+    });
   }
 
   logChangeModel(text) {
