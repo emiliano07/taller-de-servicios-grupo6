@@ -1,8 +1,8 @@
 const picklify = require('picklify');
 const fs = require('fs'); 
 const rp = require('request-promise');
-const unqmod = require('./unqfy');
-const credentials = JSON.parse(fs.readFileSync('spotifyCreds.json'));
+const unqmod = require('../../unqfy');
+const credentials = JSON.parse(fs.readFileSync(__dirname + '/spotify/spotifyCreds.json'));
 
 class Spotify {
 
@@ -40,4 +40,4 @@ class Spotify {
   }
 }
 
-module.exports = {Spotify};
+module.exports = Spotify;

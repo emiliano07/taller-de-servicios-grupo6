@@ -12,10 +12,10 @@ const port = process.argv[2] || 5000;
 let app = express();
 let router = express.Router();
 
-let ResourceAlreadyExistsError = require('./apiErrors.js').ResourceAlreadyExistsError;
-let ResourceNotFoundError = require('./apiErrors.js').ResourceNotFoundError;
-let BadRequestError = require('./apiErrors.js').BadRequestError;
-let InternalServerError = require('./apiErrors.js').InternalServerError;
+let ResourceAlreadyExistsError = require('./src/error/apiErrors.js').ResourceAlreadyExistsError;
+let ResourceNotFoundError = require('./src/error/apiErrors.js').ResourceNotFoundError;
+let BadRequestError = require('./src/error/apiErrors.js').BadRequestError;
+let InternalServerError = require('./src/error/apiErrors.js').InternalServerError;
 
 // Retorna una instancia de UNQfy
 function loadUnqfy(){
@@ -23,7 +23,7 @@ function loadUnqfy(){
         if (fs.existsSync('data.json')) {
             unqfy = unqmod.UNQfy.load('data.json');
         }
-    return unqfy; BadRequestError
+    return unqfy;
 }
 
 app.use(bodyParser.urlencoded({extended: true}));

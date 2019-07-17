@@ -1,5 +1,5 @@
-const Spotify = require('./../../Spotify').Spotify;
-const MusixMatch = require('./../../MusixMatch').MusixMatch;
+const Spotify = require('../service/Spotify');
+const MusixMatch = require('../service/MusixMatch');
 const modelExep = require('./../model/ModelException');
 
 const populateAlbumsForArtist = (unqfy, args) => {

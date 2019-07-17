@@ -6,7 +6,7 @@ const port = process.argv[2] || 5001;
 const app = express();
 const router = express.Router();
 
-const ApiError = require('./apiErrors.js');
+const ApiError = require('./src/error/apiErrors.js');
 const unqmod = require('./unqfy');
 
 function getUNQfy(filename = 'data.json') {

@@ -3,7 +3,7 @@ const fs = require('fs');
 const rp = require('request-promise');
 const MUSIXMATCH_URL = 'http://api.musixmatch.com/ws/1.1';
 const MUSIXMATCH_KEY = '0147a28e310e40c6108d391dd14cf0ac';
-const musicMatchExep = require('./src/model/MusixmatchException');
+const musicMatchExep = require('../model/MusixmatchException');
 
 
 class MusixMatch {
@@ -49,4 +49,4 @@ class MusixMatch {
     }
 }
 
-module.exports = {MusixMatch};
+module.exports = MusixMatch;

@@ -12,7 +12,7 @@ const request = require('request'); // "Request" library
 const querystring = require('querystring');
 
 const PORT = 3000;
-const CREDENTIALS_FILENAME = 'spotifyCreds.json';
+const CREDENTIALS_FILENAME = __dirname + '/../src/service/spotify/spotifyCreds.json';
 
 const CLIENT_ID = 'd38a0113ad3e429c9dbfe4ed483a2874'; // Your client id
 const CLIENT_SECRET = 'a9176cac20db4393877e6a0ffb99bff3'; // Your secret
