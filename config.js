@@ -1,6 +1,6 @@
 const CONFIG = {
-  LOGGING_BASEURL: 'http://127.0.0.1:5002/api',
-  NOTIFICATION_BASEURL: 'http://127.0.0.1:5001/api'
+  NOTIFICATION_BASEURL: 'http://172.20.0.22:5001/api',
+  LOGGING_BASEURL: 'http://172.20.0.23:5002/api'
 };
 
 module.exports = CONFIG;

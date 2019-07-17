@@ -10,6 +10,38 @@
 ## Información
 + [UML](https://github.com/emiliano07/taller-de-servicios-grupo6/wiki)
 
+## Docker
+Crear red
+`
+docker network create --subnet=172.20.0.0/16 unqfynet
+`
+
+Buildear imagenes
+`
+docker build -t unqfy/api -f docker/Dockerfile-apiunqfy .
+`
+
+`
+docker build -t unqfy/notificaciones -f docker/Dockerfile-notificaciones .
+`
+
+`
+docker build -t unqfy/logging -f docker/Dockerfile-logging .
+`
+
+Correr instancias
+`
+docker run --rm --net unqfynet --ip 172.20.0.21 -p 5000:5000 --name unqfy_api unqfy/api
+`
+
+`
+docker run --rm --net unqfynet --ip 172.20.0.22 -p 5001:5001 --name unqfy_notificaciones unqfy/notificaciones
+`
+
+`
+docker run --rm --net unqfynet --ip 172.20.0.23 -p 5002:5002 --name unqfy_logging unqfy/logging
+`
+
 ## Comandos
 
 ### artist add

@@ -16,7 +16,7 @@ const NotificationClient = {
     };
 
     rp.post(options)
-      .catch(error => console.log(error));
+      .catch(() => console.log('No se pudo conectar al servicio de notificaciones'));
   }
 };
 

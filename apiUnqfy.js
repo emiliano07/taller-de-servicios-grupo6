@@ -1,6 +1,6 @@
 const fs = require('fs');
 const promisify = require('util').promisify;
-const MusixMatch = require('./MusixMatch').MusixMatch;
+const MusixMatch = require('./src/service/MusixMatch');
 
 const unqmod = require('./unqfy');
 
