@@ -17,6 +17,19 @@ const NotificationClient = {
 
     rp.post(options)
       .catch(() => console.log('No se pudo conectar al servicio de notificaciones'));
+  },
+
+  deleteArtist: (artistId) => {
+    const options = {
+      url: CONFIG.NOTIFICATION_BASEURL + '/subscriptions',
+      body: {
+        artistId: artistId
+      },
+      json: true,
+    };
+
+    rp.delete(options)
+      .catch(() => console.log('No se pudo conectar al servicio de notificaciones'));
   }
 };
 

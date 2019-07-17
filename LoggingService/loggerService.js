@@ -3,7 +3,6 @@ const promisify = require('util').promisify;
 const portfinder = require('portfinder');
 
 const LOGGING_BASEURL = require('../config').LOGGING_BASEURL;
-const NOTIFICATION_BASEURL = require('../config').NOTIFICATION_BASEURL;
 
 class Logger {
 
@@ -67,7 +66,7 @@ class Logger {
 
       return rp(options).then((response) => {
         console.log("Log enviado!");
-      }).catch(() => console.log('No se pudo conectar al servicio de logging'));
+      }).catch(error => console.log('No se pudo conectar al servicio de logging: ' + error.message));
     }
   }
 
@@ -86,7 +85,7 @@ class Logger {
 
     rp(options).then((response) => {
       console.log("Log enviado: " + text);
-    }).catch(() => console.log('No se pudo conectar al servicio de logging'));
+    }).catch(error => console.log('No se pudo conectar al servicio de logging: ' + error.message));
   }
 }
 

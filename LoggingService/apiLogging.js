@@ -3,6 +3,7 @@ const promisify = require('util').promisify;
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 const port = process.argv[2] || 5002;
 
@@ -11,6 +12,7 @@ let router = express.Router();
 
 const Logger = require('./loggerService').Logger;
 
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/api', router);

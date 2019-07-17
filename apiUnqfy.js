@@ -6,6 +6,7 @@ const unqmod = require('./unqfy');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 const port = process.argv[2] || 5000;
 
@@ -26,6 +27,7 @@ function loadUnqfy(){
     return unqfy;
 }
 
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/api', router);

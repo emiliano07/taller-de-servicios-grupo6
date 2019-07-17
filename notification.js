@@ -1,6 +1,7 @@
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 const port = process.argv[2] || 5001;
 const app = express();
@@ -17,6 +18,7 @@ function getUNQfy(filename = 'data.json') {
   return unqfy;
 }
 
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
