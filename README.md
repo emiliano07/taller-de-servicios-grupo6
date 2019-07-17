@@ -12,11 +12,13 @@
 
 ## Docker
 Crear red
+
 `
 docker network create --subnet=172.20.0.0/16 unqfynet
 `
 
 Buildear imagenes
+
 `
 docker build -t unqfy/api -f docker/Dockerfile-apiunqfy .
 `
@@ -30,6 +32,7 @@ docker build -t unqfy/logging -f docker/Dockerfile-logging .
 `
 
 Correr instancias
+
 `
 docker run --rm --net unqfynet --ip 172.20.0.21 -p 5000:5000 --name unqfy_api unqfy/api
 `
