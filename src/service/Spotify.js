@@ -8,7 +8,7 @@ class Spotify {
 
   constructor() {}
   
-  populateAlbumsForArtist(artistSpotifyId, artist, callback) {
+  populateAlbumsForArtist(unqfy, artistSpotifyId, artist, callback) {
     const options = {
       url: `https://api.spotify.com/v1/artists/${artistSpotifyId}/albums`,
       headers: { Authorization: 'Bearer ' + credentials.access_token },
@@ -18,7 +18,6 @@ class Spotify {
     rp.get(options).then((response) => {
       response.items.map(album => {
         try {
-          let unqfy = unqmod.UNQfy.load('data.json');
           unqfy.addAlbum(artist.id, {name: album.name, year: album.release_date});
           console.log(`Album ${album.name} created`);
         } catch (error) {

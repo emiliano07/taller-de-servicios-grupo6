@@ -11,7 +11,7 @@ const populateAlbumsForArtist = (unqfy, args) => {
   }
   
   spotify.searchArtistSpotifyId(artistName, (spotifyId) => {
-    spotify.populateAlbumsForArtist(spotifyId, artist, () => unqfy.save());
+    spotify.populateAlbumsForArtist(unqfy, spotifyId, artist, () => unqfy.save());
   });
 };
 
