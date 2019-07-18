@@ -5,14 +5,14 @@ const loggly = require('loggly');
 
 const LOGGING_BASEURL = require('../config').LOGGING_BASEURL;
 
-class Logger {
+const logglyClient = loggly.createClient({
+  token: '94c4ceff-f22a-47de-9347-b8bca6ce6809',
+  subdomain: 'hernanslavich'
+});
 
+class Logger {
   constructor() {
     this.active = true;
-    this.logglyClient = loggly.createClient({
-      token: '94c4ceff-f22a-47de-9347-b8bca6ce6809',
-      subdomain: 'hernanslavich'
-    });
   }
 
   activate() {
@@ -76,7 +76,7 @@ class Logger {
   }
 
   logToLoggly(text) {
-    this.logglyClient.log(text, (err, result) => {
+    logglyClient.log(text, (err, result) => {
       console.log(text);
       console.log('log enviado a loggly');
       console.log(result);
