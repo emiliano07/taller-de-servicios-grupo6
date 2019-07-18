@@ -84,8 +84,9 @@ class Logger {
   }
 
   logChangeModel(text) {
-    console.log(text)
-    let texto = text
+    console.log(text);
+    let texto = text;
+    this.logToLoggly(text);
 
     const options = {
       method: 'POST',
