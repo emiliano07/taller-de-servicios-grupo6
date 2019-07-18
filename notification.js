@@ -130,6 +130,7 @@ const errorHandler = (err, req, res, next) => {
   if(error.type === 'entity.parse.failed'){
     error = new ApiError.BadRequestError();
   } else if (!err.statusCode) {
+    console.log(err);
     error = new ApiError.InternalServerError();
   }
 

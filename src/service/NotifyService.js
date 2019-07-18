@@ -30,7 +30,9 @@ class NotifyService {
   }
 
   notify(artistId, subject, message, from) {
-    this.subscriptions[artistId].map(email => this.sendEmail(artistId, subject, message, from, email));
+    if (artistId in this.subscriptions) {
+      this.subscriptions[artistId].map(email => this.sendEmail(artistId, subject, message, from, email));
+    }
   }
 
   sendEmail(artistId, subject, message, from, to) {
